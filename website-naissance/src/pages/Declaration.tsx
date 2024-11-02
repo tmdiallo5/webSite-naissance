@@ -1,7 +1,7 @@
 import React from "react";
 
 function Declaration() {
-  return <div>Declaration</div>;
+  return <section className="border-4 border-blue-200">Declaration</section>;
 }
 
 export default Declaration;
