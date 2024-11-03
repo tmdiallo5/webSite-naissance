@@ -1,2 +1,3 @@
 export * from './data'
 export * from './declarations'
+export * from'./date'

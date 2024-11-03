@@ -1,45 +1,50 @@
-import { DECLARATIONS } from "../utils";
+import { DECLARATIONS, formatDate } from "../utils";
 
 function Declaration() {
   return (
-    <div className="border-4 border-blue-200 bg-white shadow-md rounded-md">
-      <article>
-        <span>Date</span>
+    <div className=" border-4  bg-white shadow-md rounded-md">
+      <article className="grid grid-cols-12 items-center">
+        <span className={`p-2`}>Date</span>
 
-        <span>Enfant</span>
+        <span className={`p-2 col-span-2`}>Enfant</span>
 
-        <span>Date de naissances</span>
+        <span className={`p-2`}>Date de nais</span>
 
-        <span>Hopital</span>
+        <span className={`p-2`}>Hopital</span>
 
-        <span>Parent 1</span>
-        <span>Parent 2</span>
+        <span className={`p-2 col-span-2`}>Parent 1</span>
+        <span className={`p-2 col-span-2`}>Parent 2</span>
 
-        <span>Statu</span>
-        <span>ACTIONS</span>
+        <span className={`p-2`}>Statut</span>
+        <span className={`col-span-2`}>ACTIONS</span>
       </article>
-      {DECLARATIONS.map((item) => (
-        <article key={item.id}>
-          <span>{item.registered}</span>
-          <span>
+      {DECLARATIONS.map((item, index) => (
+        <article
+          key={item.id}
+          className={`grid grid-cols-12 border-t items-center ${
+            index % 2 === 0 ? "bg-gray-200" : null
+          }`}
+        >
+          <span className={` p-2`}>{formatDate(item.registered)}</span>
+          <span className={` p-2 col-span-2 flex flex-col`}>
             <span>{item.child.firstName}</span>
-            <span>{item.child.lastName}</span>
+            <span className="uppercase">{item.child.lastName}</span>
           </span>
-          <span>{item.child.birthDate}</span>
-          <span>
+          <span className={` p-2`}>{formatDate(item.child.birthDate)}</span>
+          <span className={` p-2`}>
             <span>{item.company.name}</span>
           </span>
-          <span>
+          <span className={` p-2 col-span-2 flex flex-col`}>
             <span>{item.firstParent.firstName}</span>
-            <span>{item.firstParent.lastName}</span>
+            <span className="uppercase">{item.firstParent.lastName}</span>
           </span>
-          <span>
+          <span className={` p-2 col-span-2 flex flex-col`}>
             <span>{item.secondParent.firstName}</span>
-            <span>{item.secondParent.lastName}</span>
+            <span className="uppercase">{item.secondParent.lastName}</span>
           </span>
 
-          <span>{item.status}</span>
-          <span>ACTIONS</span>
+          <span className={` p-2`}>{item.status}</span>
+          <span className={` p-2 col-span-2 flex flex-col`}>ACTIONS</span>
         </article>
       ))}
     </div>
