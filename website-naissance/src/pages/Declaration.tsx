@@ -1,4 +1,9 @@
-import { DECLARATIONS, formatDate } from "../utils";
+import {
+  DECLARATIONS,
+  formatDate,
+  getStatusColor,
+  getStatusColorLabel,
+} from "../utils";
 
 function Declaration() {
   return (
@@ -43,7 +48,9 @@ function Declaration() {
             <span className="uppercase">{item.secondParent.lastName}</span>
           </span>
 
-          <span className={` p-2`}>{item.status}</span>
+          <span className={` p-2 ${getStatusColor(item.status)}`}>
+            {getStatusColorLabel(item.status)}
+          </span>
           <span className={` p-2 col-span-2 flex flex-col`}>ACTIONS</span>
         </article>
       ))}
