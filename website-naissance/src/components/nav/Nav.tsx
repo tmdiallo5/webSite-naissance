@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { NAV_LINKS } from "../../utils/data";
+import { NAV_LINKS } from "../../utils/";
 
 function Nav() {
   return (
