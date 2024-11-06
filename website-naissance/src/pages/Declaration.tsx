@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   DECLARATIONS,
   formatDate,
@@ -6,6 +7,18 @@ import {
 } from "../utils";
 
 function Declaration() {
+  const [declarations, setDeclaration] = useState<any>([]);
+
+  const search = async () => {
+    const response = await fetch("http://localhost:8080/declarations");
+    const data = await response.json();
+    setDeclaration(data);
+  };
+
+  useEffect(() => {
+    search();
+  }, []);
+
   return (
     <div className=" border-4  bg-white shadow-md rounded-md">
       <article className="grid grid-cols-12 items-center">
@@ -23,7 +36,7 @@ function Declaration() {
         <span className={`p-2`}>Statut</span>
         <span className={`col-span-2`}>ACTIONS</span>
       </article>
-      {DECLARATIONS.map((item, index) => (
+      {declarations.map((item: any, index: number) => (
         <article
           key={item.id}
           className={`grid grid-cols-12 border-t items-center ${
