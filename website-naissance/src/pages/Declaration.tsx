@@ -5,9 +5,10 @@ import {
   getStatusColor,
   getStatusColorLabel,
 } from "../utils";
+import { Declarations } from "../types/Declarations";
 
 function Declaration() {
-  const [declarations, setDeclaration] = useState<any>([]);
+  const [declarations, setDeclaration] = useState<Declarations[]>([]);
 
   const search = async () => {
     const response = await fetch("http://localhost:8080/declarations");
@@ -36,7 +37,7 @@ function Declaration() {
         <span className={`p-2`}>Statut</span>
         <span className={`col-span-2`}>ACTIONS</span>
       </article>
-      {declarations.map((item: any, index: number) => (
+      {declarations.map((item: Declarations, index: number) => (
         <article
           key={item.id}
           className={`grid grid-cols-12 border-t items-center ${
@@ -48,7 +49,9 @@ function Declaration() {
             <span>{item.child.firstName}</span>
             <span className="uppercase">{item.child.lastName}</span>
           </span>
-          <span className={` p-2`}>{formatDate(item.child.birthDate)}</span>
+          <span className={` p-2`}>
+            {item?.child?.birthDate ? formatDate(item.child.birthDate) : null}
+          </span>
           <span className={` p-2`}>
             <span>{item.company.name}</span>
           </span>
