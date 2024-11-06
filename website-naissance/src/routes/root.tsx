@@ -5,6 +5,9 @@ import PrivateLayout from "../layouts/PrivateLayout";
 import Declaration from "../pages/Declaration";
 import Home from "../pages/Home";
 
+import Requests from "../pages/Requests";
+import PrivateLayoutD from "../layouts/PrivateLayoutD";
+
 const router = createBrowserRouter([
   {
     path: "/",
