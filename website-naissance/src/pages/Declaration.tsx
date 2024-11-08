@@ -1,24 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  DECLARATIONS,
-  formatDate,
-  getStatusColor,
-  getStatusColorLabel,
-} from "../utils";
-import { Declarations } from "../types/Declarations";
+import { formatDate, getStatusColor, getStatusColorLabel } from "../utils";
+import { Declarations } from "@/types/Declarations";
+import { useDeclarations } from "@/hooks";
 
 function Declaration() {
-  const [declarations, setDeclaration] = useState<Declarations[]>([]);
-
-  const search = async () => {
-    const response = await fetch("http://localhost:8080/declarations");
-    const data = await response.json();
-    setDeclaration(data);
-  };
-
-  useEffect(() => {
-    search();
-  }, []);
+  const { declarations } = useDeclarations();
 
   return (
     <div className=" border-4  bg-white shadow-md rounded-md">

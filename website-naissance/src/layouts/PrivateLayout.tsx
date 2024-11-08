@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Nav from "../components/nav/Nav";
-import { useState } from "react";
+import Nav from "@/components/nav/Nav";
 
 function PrivateLayout() {
   return (
