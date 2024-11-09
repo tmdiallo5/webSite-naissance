@@ -2,6 +2,10 @@ import { Declarations } from "@/types/Declarations";
 
 import DeclarationsItem from "./DeclarationsItem";
 
+type Props = {
+  declarations: Declarations[];
+};
+
 function DeclarationsItems(props: any) {
   console.log(props);
 

@@ -1,6 +1,12 @@
 import { formatDate, getStatusColor, getStatusColorLabel } from "@/utils";
 import ActionButton from "../shared/ActionButton";
 import StatusBadge from "../shared/StatusBadge";
+import { Declarations } from "@/types/Declarations";
+
+type Props = {
+  declaration: Declarations;
+  index: number;
+};
 
 function DeclarationsItem({ declaration: item, index }: any) {
   return (
@@ -32,7 +38,11 @@ function DeclarationsItem({ declaration: item, index }: any) {
 
       <StatusBadge status={item.status} />
 
-      <ActionButton classes="p-2 col-span-2 " label="action" />
+      <ActionButton
+        classes="p-2 col-span-2 "
+        label="action"
+        action={() => null}
+      />
     </article>
   );
 }
