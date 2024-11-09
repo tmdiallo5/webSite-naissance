@@ -38,11 +38,9 @@ function DeclarationsItem({ declaration: item, index }: any) {
 
       <StatusBadge status={item.status} />
 
-      <ActionButton
-        classes="p-2 col-span-2 "
-        label="action"
-        action={() => null}
-      />
+      <ActionButton classes="p-2 col-span-2 " action={() => null}>
+        <span>action</span>
+      </ActionButton>
     </article>
   );
 }
