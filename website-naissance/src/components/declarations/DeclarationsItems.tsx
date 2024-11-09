@@ -5,19 +5,26 @@ import { BiSort } from "react-icons/bi";
 
 type Props = {
   declarations: Declarations[];
-  sortByStatus: () => [];
+  sortByStatus: () => void;
+  sortByDate: () => void;
 };
 
-function DeclarationsItems(props: any) {
+function DeclarationsItems(props: Props) {
   console.log(props);
 
-  const { declarations, sortByStatus } = props;
+  const { declarations, sortByStatus, sortByDate } = props;
 
   return (
     <>
       <article className="grid grid-cols-12 items-center">
-        <span className={`p-2`}>Date</span>
-
+        <button
+          type="button"
+          onClick={sortByDate}
+          className={`p-2 text-center flex justify-between items-center`}
+        >
+          Date
+          <BiSort />
+        </button>
         <span className={`p-2 col-span-2`}>Enfant</span>
 
         <span className={`p-2`}>Date de nais</span>

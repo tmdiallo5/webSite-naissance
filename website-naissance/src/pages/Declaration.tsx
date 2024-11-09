@@ -5,13 +5,14 @@ import { useDeclarations } from "@/hooks";
 import DeclarationsItems from "@/components/declarations/DeclarationsItems";
 
 function Declaration() {
-  const { declarations, sortByStatus } = useDeclarations();
+  const { declarations, sortByStatus, sortByDate } = useDeclarations();
 
   return (
     <div className=" border-4  bg-white shadow-md rounded-md">
       <DeclarationsItems
         declarations={declarations}
         sortByStatus={sortByStatus}
+        sortByDate={sortByDate}
       />
     </div>
   );
