@@ -1,15 +1,17 @@
 import { Declarations } from "@/types/Declarations";
 
 import DeclarationsItem from "./DeclarationsItem";
+import { BiSort } from "react-icons/bi";
 
 type Props = {
   declarations: Declarations[];
+  sortByStatus: () => [];
 };
 
 function DeclarationsItems(props: any) {
   console.log(props);
 
-  const { declarations } = props;
+  const { declarations, sortByStatus } = props;
 
   return (
     <>
@@ -25,7 +27,14 @@ function DeclarationsItems(props: any) {
         <span className={`p-2 col-span-2`}>Parent 1</span>
         <span className={`p-2 col-span-2`}>Parent 2</span>
 
-        <span className={`p-2 text-center`}>Statut</span>
+        <button
+          type="button"
+          onClick={() => sortByStatus()}
+          className={`p-2 text-center flex justify-between items-center`}
+        >
+          Statut
+          <BiSort />
+        </button>
         <span className={`col-span-2 text-center`}>ACTIONS</span>
       </article>
       {declarations.map((item: Declarations, index: number) => (
