@@ -6,7 +6,7 @@ function DeclarationEdit() {
       <h1 className="mb-3 text-xl font-bold">Déclarer une naissance</h1>
       <form action="">
         <h3 className="border-b  border-gray-900">Information surl'enfant</h3>
-        <div>
+        <div className="form-field">
           <label htmlFor="child-firstname">Prénom</label>
           <input
             type="text"
