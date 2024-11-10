@@ -4,6 +4,7 @@ import ErrorPage from "@/error-page";
 import PrivateLayout from "@/layouts/PrivateLayout";
 import Declaration from "@/pages/Declaration";
 import Home from "@/pages/Home";
+import DeclarationEdit from "@/pages/DeclarationEdit";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
           {
             path: "declaration",
             element: <Declaration />,
+          },
+          {
+            path: "declaration/new",
+            element: <DeclarationEdit />,
           },
         ],
       },
