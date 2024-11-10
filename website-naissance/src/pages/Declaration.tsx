@@ -1,9 +1,17 @@
 import { useDeclarations } from "@/hooks";
 import DeclarationsItems from "@/components/declarations/DeclarationsItems";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 function Declaration() {
-  const { declarations, sortByStatus, sortByDate } = useDeclarations();
+  const {
+    declarations,
+    sortByStatus,
+    sortByDate,
+    filtRef,
+    filterDeclarations,
+    filteredDeclaration,
+  } = useDeclarations();
 
   return (
     <>
@@ -13,6 +21,8 @@ function Declaration() {
           name=""
           id="rechercher"
           placeholder="Rechercher par nom"
+          ref={filtRef}
+          onKeyUp={filterDeclarations}
           className="bg-gray-200 px-3 py-2 rounded-md w-96"
         />
         <Link
@@ -24,7 +34,9 @@ function Declaration() {
       </div>
       <div className=" border-4  bg-white shadow-md rounded-md">
         <DeclarationsItems
-          declarations={declarations}
+          declarations={
+            filteredDeclaration.length ? filteredDeclaration : declarations
+          }
           sortByStatus={sortByStatus}
           sortByDate={sortByDate}
         />

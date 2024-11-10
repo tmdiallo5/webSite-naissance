@@ -1,12 +1,14 @@
 import { search } from "@/services";
 import { Declarations } from "@/types/Declarations";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function useDeclarations () {
 
+  const filtRef = useRef<any>()
     const [statusOrder, setStatusOrder] = useState(1);
     const [dateOrder, setDateOrder] = useState(1);
     const [declarations, setDeclaration] = useState<Declarations[]>([]);
+    const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>([]);
    
 
       const sortByStatus = () => {
@@ -48,6 +50,21 @@ function useDeclarations () {
        setDeclaration([...sortedDeclarations]);
      }
 
+     const filterDeclarations = () => {
+        const filter = filtRef.current.value || "";
+        if(filter.length > 1){
+         const filteredDeclaration = declarations.filter(item => {
+            const {child: {firstName, lastName}} = item;
+            return (firstName.toLowerCase().indexOf(filter.toLowerCase()) > -1 || lastName.toLowerCase().includes(filter.toLowerCase()))
+          });
+          setfilteredDeclaration([...filteredDeclaration]);
+        }
+        else {
+          setfilteredDeclaration([...declarations]);
+        }
+        
+        
+     }
 
     const getDeclaration = async () => {
         const data = await search('declarations')
@@ -58,7 +75,7 @@ function useDeclarations () {
         getDeclaration();
       }, []);
 
-      return {declarations, sortByStatus, sortByDate};
+      return {declarations, sortByStatus, sortByDate, filtRef, filterDeclarations, filteredDeclaration};
 }
 
 export{ useDeclarations}
