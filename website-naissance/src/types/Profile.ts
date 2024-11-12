@@ -3,5 +3,6 @@ export type Profile = {
      firstName: string,
      lastName: string,
      eyeColor?: string,
-     birthDate?: string
+     birthDate?: string,
+     birthTime?: string; 
 }
