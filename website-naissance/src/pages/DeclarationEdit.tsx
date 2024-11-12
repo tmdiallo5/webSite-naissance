@@ -16,6 +16,38 @@ function DeclarationEdit() {
           />
           <p className="text-red-600"></p>
         </div>
+        <div className="form-field">
+          <label htmlFor="child-lastName">Nom</label>
+          <input
+            type="text"
+            name=""
+            id="child-firstname"
+            placeholder="Nom de l'enfant"
+          />
+          <p className="text-red-600"></p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="child-firstname">
+            Date de naissance et heure de naissance
+          </label>
+          <div className="flex justify-between items-center gap-2">
+            <input
+              type="date"
+              name=""
+              id="child-birthday"
+              placeholder="Date de naissance"
+            />
+            <input
+              type="time"
+              name=""
+              id="child-birthday"
+              placeholder="heure de naissance"
+            />
+          </div>
+
+          <p className="text-red-600"></p>
+        </div>
+        <button type="submit">Enregistrer</button>
       </form>
     </article>
   );
