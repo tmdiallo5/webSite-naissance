@@ -8,8 +8,8 @@ import { Declarations } from "@/types/Declarations";
 const REQUIRED_FIELD = "Ce champ est requis";
 const schema = yup
   .object({
-    picture: yup.string().required(REQUIRED_FIELD),
-    comment: yup.string().required(REQUIRED_FIELD),
+    picture: yup.string(),
+    comment: yup.string(),
     status: yup.string().required(REQUIRED_FIELD).default("NEW"),
     registered: yup
       .string()
@@ -30,11 +30,15 @@ const schema = yup
       gender: yup.string().required(REQUIRED_FIELD),
       firstName: yup.string().required(REQUIRED_FIELD),
       lastName: yup.string().required(REQUIRED_FIELD),
+      email: yup.string().required(REQUIRED_FIELD),
+      phone: yup.string().required(REQUIRED_FIELD),
     }),
     secondParent: yup.object({
       gender: yup.string().required(REQUIRED_FIELD),
       firstName: yup.string().required(REQUIRED_FIELD),
       lastName: yup.string().required(REQUIRED_FIELD),
+      email: yup.string().required(REQUIRED_FIELD),
+      phone: yup.string().required(REQUIRED_FIELD),
     }),
   })
   .required();
@@ -53,7 +57,19 @@ function DeclarationEdit() {
     <article className=" border-4  bg-white shadow-md rounded-md w-1/2 mx-auto p-4">
       <h1 className="mb-3 text-xl font-bold">Déclarer une naissance</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="border-b  border-gray-900">Information surl'enfant</h3>
+        {/*Enfant*/}
+        <h3 className="border-b  border-gray-900">Information sur l'enfant</h3>
+        <div className="form-field">
+          <label htmlFor="child-gender">Civilité</label>
+          <select {...register("child.gender")} id="child-gender">
+            <option value="">Sélectionner</option>
+            <option value="MR">Monsieur</option>
+            <option value="MS">Madame</option>
+            <option value="MRS">Mademoiselle</option>
+          </select>
+
+          <p className="text-red-600">{errors.child?.gender?.message}</p>
+        </div>
         <div className="form-field">
           <label htmlFor="child-firstname">Prénom</label>
           <input
@@ -97,6 +113,167 @@ function DeclarationEdit() {
           <p className="text-red-600">{errors.child?.birthDate?.message}</p>
           <p className="text-red-600">{errors.child?.birthTime?.message}</p>
         </div>
+
+        {/*Parent 1*/}
+        <h3 className="border-b  border-gray-900 mt-5">
+          Information sur le premier parent
+        </h3>
+        <div className="form-field">
+          <label htmlFor="firstParent-firstname">Civilité</label>
+          <select {...register("firstParent.gender")} id="firstParent-gender">
+            <option value="">Sélectionner</option>
+            <option value="MR">Monsieur</option>
+            <option value="MS">Madame</option>
+            <option value="MRS">Mademoiselle</option>
+          </select>
+
+          <p className="text-red-600">{errors.firstParent?.gender?.message}</p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="firstParent-firstname">Prénom</label>
+          <input
+            type="text"
+            id="firstParent-firstname"
+            placeholder="Prénom du premier parent"
+            {...register("firstParent.firstName")}
+          />
+
+          <p className="text-red-600">
+            {errors.firstParent?.firstName?.message}
+          </p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="firstParent-lastName">Nom</label>
+          <input
+            type="text"
+            id="firstParent-firstname"
+            placeholder="Nom du premier parent"
+            {...register("firstParent.lastName")}
+          />
+          <p className="text-red-600">
+            {errors.firstParent?.lastName?.message}
+          </p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="firstParent-lastName">Email</label>
+          <input
+            type="emailt"
+            id="firstParent-email"
+            placeholder="Email du premier parent"
+            {...register("firstParent.email")}
+          />
+          <p className="text-red-600">{errors.firstParent?.email?.message}</p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="firstParent-phone">Phone</label>
+          <input
+            type="tel"
+            id="firstParent-email"
+            placeholder="Telephone du premier parent"
+            {...register("firstParent.phone")}
+          />
+          <p className="text-red-600">{errors.firstParent?.phone?.message}</p>
+        </div>
+
+        {/*Parent 2*/}
+        <h3 className="border-b  border-gray-900 mt-5">
+          Information sur le second parent
+        </h3>
+        <div className="form-field">
+          <label htmlFor="secondParent-firstname">Civilité</label>
+          <select {...register("secondParent.gender")} id="secondParent-gender">
+            <option value="">Sélectionner</option>
+            <option value="MR">Monsieur</option>
+            <option value="MS">Madame</option>
+            <option value="MRS">Mademoiselle</option>
+          </select>
+
+          <p className="text-red-600">{errors.secondParent?.gender?.message}</p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="secondParent-firstname">Prénom</label>
+          <input
+            type="text"
+            id="secondParent-firstname"
+            placeholder="Prénom du second parent"
+            {...register("secondParent.firstName")}
+          />
+
+          <p className="text-red-600">
+            {errors.secondParent?.firstName?.message}
+          </p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="secondParent-lastName">Nom</label>
+          <input
+            type="text"
+            id="secondParent-firstname"
+            placeholder="Nom du second parent"
+            {...register("secondParent.lastName")}
+          />
+          <p className="text-red-600">
+            {errors.secondParent?.lastName?.message}
+          </p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="secondParent-lastName">Email</label>
+          <input
+            type="email"
+            id="secondParent-email"
+            placeholder="Email du second parent"
+            {...register("secondParent.email")}
+          />
+          <p className="text-red-600">{errors.secondParent?.email?.message}</p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="secondParent-phone">Phone</label>
+          <input
+            type="tel"
+            id="secondParent-email"
+            placeholder="Telephone du second parent"
+            {...register("secondParent.phone")}
+          />
+          <p className="text-red-600">{errors.secondParent?.phone?.message}</p>
+        </div>
+
+        {/*L'hopital*/}
+        <h3 className="border-b  border-gray-900 mt-5">
+          Information sur le lieu de naissance
+        </h3>
+
+        <div className="form-field">
+          <label htmlFor="company-name">Nom de l'établissement</label>
+          <input
+            type="text"
+            id="company-name"
+            placeholder="Nom de l'établissement"
+            {...register("company.name")}
+          />
+
+          <p className="text-red-600">{errors.company?.name?.message}</p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="company-adresse">Adresse de l'établissement</label>
+          <input
+            type="text"
+            id="company-adresse"
+            placeholder="Adresse de l'établissement"
+            {...register("company.adress")}
+          />
+          <p className="text-red-600">{errors.company?.adress?.message}</p>
+        </div>
+        <div className="form-field">
+          <label htmlFor="comment">
+            Avez-vous des informations complémentaire à nous transmettre
+          </label>
+          <textarea
+            id="comment"
+            placeholder="Avez-vous des informations complémentaire à nous transmettre"
+            {...register("comment")}
+          />
+          <p className="text-red-600">{errors.comment?.message}</p>
+        </div>
+
         <button type="submit">Enregistrer</button>
       </form>
     </article>

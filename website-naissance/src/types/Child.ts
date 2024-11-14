@@ -4,5 +4,6 @@ export type Child = {
     lastName: string,
     eyeColor?: string,
     birthDate: string,
-    birthTime: string,
+    birthTime: string;
+   
 }
