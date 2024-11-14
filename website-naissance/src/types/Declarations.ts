@@ -4,8 +4,8 @@ import { Profile } from "./Profile"
 
 export type Declarations = {
     id?: string|number,
-    picture?: string,
-    comment?: string,
+    picture: string,
+    comment: string,
     status:string,
     registered: string,
     company: Company,

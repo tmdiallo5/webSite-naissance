@@ -1,14 +1,53 @@
 import { Profile } from "@/types/Profile";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Declarations } from "@/types/Declarations";
+
+const REQUIRED_FIELD = "Ce champ est requis";
+const schema = yup
+  .object({
+    picture: yup.string().required(REQUIRED_FIELD),
+    comment: yup.string().required(REQUIRED_FIELD),
+    status: yup.string().required(REQUIRED_FIELD).default("NEW"),
+    registered: yup
+      .string()
+      .required(REQUIRED_FIELD)
+      .default(`${new Date().getTime()}`),
+    company: yup.object({
+      name: yup.string().required(REQUIRED_FIELD),
+      adress: yup.string().required(REQUIRED_FIELD),
+    }),
+    child: yup.object({
+      gender: yup.string().required(REQUIRED_FIELD),
+      firstName: yup.string().required(REQUIRED_FIELD),
+      lastName: yup.string().required(REQUIRED_FIELD),
+      birthDate: yup.string().required(REQUIRED_FIELD),
+      birthTime: yup.string().required(REQUIRED_FIELD),
+    }),
+    firstParent: yup.object({
+      gender: yup.string().required(REQUIRED_FIELD),
+      firstName: yup.string().required(REQUIRED_FIELD),
+      lastName: yup.string().required(REQUIRED_FIELD),
+    }),
+    secondParent: yup.object({
+      gender: yup.string().required(REQUIRED_FIELD),
+      firstName: yup.string().required(REQUIRED_FIELD),
+      lastName: yup.string().required(REQUIRED_FIELD),
+    }),
+  })
+  .required();
 
 function DeclarationEdit() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Profile>();
-  const onSubmit: SubmitHandler<Profile> = (data) => console.log(data);
+  } = useForm<Declarations>({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit: SubmitHandler<Declarations> = (data) => console.log(data);
 
   return (
     <article className=" border-4  bg-white shadow-md rounded-md w-1/2 mx-auto p-4">
@@ -21,11 +60,10 @@ function DeclarationEdit() {
             type="text"
             id="child-firstname"
             placeholder="Prénom de l'enfant"
-            {...register("firstName", { required: true })}
+            {...register("child.firstName")}
           />
-          {errors.firstName && (
-            <p className="text-red-600">Ce champ est requis</p>
-          )}
+
+          <p className="text-red-600">{errors.child?.firstName?.message}</p>
         </div>
         <div className="form-field">
           <label htmlFor="child-lastName">Nom</label>
@@ -33,11 +71,9 @@ function DeclarationEdit() {
             type="text"
             id="child-firstname"
             placeholder="Nom de l'enfant"
-            {...register("lastName", { required: true })}
+            {...register("child.lastName")}
           />
-          {errors.lastName && (
-            <p className="text-red-600">Ce champ est requis</p>
-          )}
+          <p className="text-red-600">{errors.child?.lastName?.message}</p>
         </div>
         <div className="form-field">
           <label htmlFor="child-firstname">
@@ -48,22 +84,18 @@ function DeclarationEdit() {
               type="date"
               id="child-birthday"
               placeholder="Date de naissance"
-              {...register("birthDate", { required: true })}
+              {...register("child.birthTime")}
             />
 
             <input
               type="time"
               id="child-birthday"
               placeholder="heure de naissance"
-              {...register("birthTime", { required: true })}
+              {...register("child.birthTime")}
             />
           </div>
-          {errors.birthDate && (
-            <p className="text-red-600">La date de naissance est requise</p>
-          )}
-          {errors.birthTime && (
-            <p className="text-red-600">L'heure de naissance est requis</p>
-          )}
+          <p className="text-red-600">{errors.child?.birthDate?.message}</p>
+          <p className="text-red-600">{errors.child?.birthTime?.message}</p>
         </div>
         <button type="submit">Enregistrer</button>
       </form>
