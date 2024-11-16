@@ -9,6 +9,12 @@ function useDeclarations () {
     const [dateOrder, setDateOrder] = useState(1);
     const [declarations, setDeclaration] = useState<Declarations[]>([]);
     const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>([]);
+
+    const updateStatus = (data: { id: string; status: string }) => {
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    }
    
 
       const sortByStatus = () => {
@@ -75,7 +81,7 @@ function useDeclarations () {
         getDeclaration();
       }, []);
 
-      return {declarations, sortByStatus, sortByDate, filtRef, filterDeclarations, filteredDeclaration};
+      return {declarations, updateStatus, sortByStatus, sortByDate, filtRef, filterDeclarations, filteredDeclaration};
 }
 
 export{ useDeclarations}

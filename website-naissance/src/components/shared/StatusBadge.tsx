@@ -1,10 +1,10 @@
-import { getStatusColor, getStatusColorLabel } from "@/utils";
+import { getStatusColor, getStatusLabel } from "@/utils";
 import React from "react";
 
 function StatusBadge({ status }: { status: string }) {
   return (
     <span className={` p-2 ${getStatusColor(status)}`}>
-      {getStatusColorLabel(status)}
+      {getStatusLabel(status)}
     </span>
   );
 }

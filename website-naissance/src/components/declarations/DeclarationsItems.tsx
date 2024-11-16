@@ -7,12 +7,13 @@ type Props = {
   declarations: Declarations[];
   sortByStatus: () => void;
   sortByDate: () => void;
+  updateStatus: (props: any) => void;
 };
 
 function DeclarationsItems(props: Props) {
   console.log(props);
 
-  const { declarations, sortByStatus, sortByDate } = props;
+  const { declarations, sortByStatus, sortByDate, updateStatus } = props;
 
   return (
     <>
@@ -45,7 +46,12 @@ function DeclarationsItems(props: Props) {
         <span className={`col-span-2 text-center`}>ACTIONS</span>
       </article>
       {declarations.map((item: Declarations, index: number) => (
-        <DeclarationsItem declaration={item} index={index} key={item.id} />
+        <DeclarationsItem
+          action={updateStatus}
+          declaration={item}
+          index={index}
+          key={item.id}
+        />
       ))}
     </>
   );

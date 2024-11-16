@@ -1,4 +1,4 @@
-import { formatDate, getStatusColor, getStatusColorLabel } from "@/utils";
+import { formatDate, getStatusColor, getStatusLabel } from "@/utils";
 import ActionButton from "../shared/ActionButton";
 import StatusBadge from "../shared/StatusBadge";
 import { Declarations } from "@/types/Declarations";
@@ -6,9 +6,10 @@ import { Declarations } from "@/types/Declarations";
 type Props = {
   declaration: Declarations;
   index: number;
+  action: (data: { id: string; status: string }) => void;
 };
 
-function DeclarationsItem({ declaration: item, index }: any) {
+function DeclarationsItem({ declaration: item, index, action }: any) {
   return (
     <article
       key={item.id}
@@ -38,9 +39,11 @@ function DeclarationsItem({ declaration: item, index }: any) {
 
       <StatusBadge status={item.status} />
 
-      <ActionButton classes="p-2 col-span-2 " action={() => null}>
-        <span>action</span>
-      </ActionButton>
+      <ActionButton
+        classes="p-2 col-span-2 "
+        action={action}
+        id={"${item.id}"}
+      ></ActionButton>
     </article>
   );
 }

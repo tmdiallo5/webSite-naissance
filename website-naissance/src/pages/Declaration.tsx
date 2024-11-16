@@ -6,6 +6,7 @@ import { useRef } from "react";
 function Declaration() {
   const {
     declarations,
+    updateStatus,
     sortByStatus,
     sortByDate,
     filtRef,
@@ -37,6 +38,7 @@ function Declaration() {
           declarations={
             filteredDeclaration.length ? filteredDeclaration : declarations
           }
+          updateStatus={updateStatus}
           sortByStatus={sortByStatus}
           sortByDate={sortByDate}
         />
