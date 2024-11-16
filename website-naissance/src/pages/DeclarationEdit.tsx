@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Declarations } from "@/types/Declarations";
+import { create } from "@/services";
 
 const REQUIRED_FIELD = "Ce champ est requis";
 const schema = yup
@@ -14,7 +15,7 @@ const schema = yup
     registered: yup
       .string()
       .required(REQUIRED_FIELD)
-      .default(`${new Date().getTime()}`),
+      .default(`${new Date().toLocaleString()}`),
     company: yup.object({
       name: yup.string().required(REQUIRED_FIELD),
       adress: yup.string().required(REQUIRED_FIELD),
@@ -51,7 +52,10 @@ function DeclarationEdit() {
   } = useForm<Declarations>({
     resolver: yupResolver(schema),
   });
-  const onSubmit: SubmitHandler<Declarations> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Declarations> = async (data) => {
+    const response = await create("declarations", data);
+    const { status } = response;
+  };
 
   return (
     <article className=" border-4  bg-white shadow-md rounded-md w-1/2 mx-auto p-4">
