@@ -42,7 +42,7 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
       <ActionButton
         classes="p-2 col-span-2 "
         action={action}
-        id={"${item.id}"}
+        id={`${item.id}`}
       ></ActionButton>
     </article>
   );

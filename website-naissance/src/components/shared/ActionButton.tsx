@@ -20,7 +20,7 @@ function ActionButton({ id, classes, action }: Props) {
       >
         <option value="">Sélectionner</option>
         {STATUS.map((item: string) => (
-          <option key={item} value={item}>
+          <option key={`${id}-${item}`} value={item}>
             {getStatusLabel(item)}
           </option>
         ))}

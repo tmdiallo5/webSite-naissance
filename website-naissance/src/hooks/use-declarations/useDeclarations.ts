@@ -1,3 +1,4 @@
+import Declaration from "@/pages/Declaration";
 import { search } from "@/services";
 import { Declarations } from "@/types/Declarations";
 import { useEffect, useRef, useState } from "react";
@@ -11,9 +12,10 @@ function useDeclarations () {
     const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>([]);
 
     const updateStatus = (data: { id: string; status: string }) => {
-      console.log('====================================');
-      console.log(data);
-      console.log('====================================');
+      const toUpdate = declarations.filter(({id}: Declarations) => id === data.id)[0];
+      const tokeep = declarations.filter(({id}: Declarations) => id !== data.id);
+      const updated = {...toUpdate, status: data.status};
+     setDeclaration([...tokeep, updated]);
     }
    
 
