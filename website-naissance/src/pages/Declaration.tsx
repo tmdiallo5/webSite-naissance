@@ -20,10 +20,10 @@ function Declaration() {
           type="text"
           name=""
           id="rechercher"
-          placeholder="Rechercher par nom"
+          placeholder="Rechercher par nom et prenom"
           ref={filtRef}
           onKeyUp={filterDeclarations}
-          className="bg-gray-200 px-3 py-2 rounded-md w-96"
+          className="bg-gray-200 px-3 py-2 rounded-md !w-96"
         />
         <Link
           to={"/private/declaration/new"}
