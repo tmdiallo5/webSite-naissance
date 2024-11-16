@@ -100,7 +100,7 @@ function DeclarationEdit() {
               type="date"
               id="child-birthday"
               placeholder="Date de naissance"
-              {...register("child.birthTime")}
+              {...register("child.birthDate")}
             />
 
             <input
