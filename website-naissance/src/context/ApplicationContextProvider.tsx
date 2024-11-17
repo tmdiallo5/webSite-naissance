@@ -1,5 +1,7 @@
 import { Declarations } from "@/types/Declarations";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
+import { ApplicationReducer } from "./ApplicationReducer";
+import { INITIAL_STATE, UPDATE_DECLARATIONS } from "@/utils";
 
 type StateData = {
   declarations: Declarations[];
@@ -14,9 +16,12 @@ type Props = {
 //Creer le context
 export const ApplicationContext = React.createContext<Props>({} as Props);
 function ApplicationContextProvider({ children }: any) {
-  const [state, setState] = useState<StateData>({ declarations: [] });
+  //const [state, setState] = useState<StateData>({ declarations: [] });
+
+  const [state, dispatch] = useReducer(ApplicationReducer, INITIAL_STATE);
   const updateDeclarations = (declarations: Declarations[]) => {
-    setState((current) => ({ ...current, declarations }));
+    dispatch({ type: UPDATE_DECLARATIONS, data: declarations });
+    // setState((current) => ({ ...current, declarations }));
   };
 
   return (

@@ -18,4 +18,7 @@ const NAV_LINKS = [
 
 ];
 
-export {NAV_LINKS}
+const UPDATE_DECLARATIONS = "UPDATE_DECLARATIONS";
+const INITIAL_STATE = {declarations: []};
+
+export {NAV_LINKS, UPDATE_DECLARATIONS, INITIAL_STATE}
