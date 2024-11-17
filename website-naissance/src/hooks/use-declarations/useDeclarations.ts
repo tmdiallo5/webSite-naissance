@@ -12,10 +12,14 @@ function useDeclarations () {
     const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>([]);
 
     const updateStatus = (data: { id: string; status: string }) => {
-      const toUpdate = declarations.filter(({id}: Declarations) => id === data.id)[0];
-      const tokeep = declarations.filter(({id}: Declarations) => id !== data.id);
-      const updated = {...toUpdate, status: data.status};
-     setDeclaration([...tokeep, updated]);
+      const toUpdate = declarations.filter(
+        ({ id }: Declarations) => id === data.id
+      )[0];
+      const tokeep = declarations.filter(
+        ({ id }: Declarations) => id !== data.id
+      );
+      const updated = { ...toUpdate, status: data.status };
+      setDeclaration([...tokeep, updated]);
     }
    
 
