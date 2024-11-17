@@ -6,6 +6,7 @@ import { useRef } from "react";
 function Declaration() {
   const {
     declarations,
+    state,
     updateStatus,
     sortByStatus,
     sortByDate,
@@ -13,6 +14,9 @@ function Declaration() {
     filterDeclarations,
     filteredDeclaration,
   } = useDeclarations();
+  console.log("====================================");
+  console.log(state);
+  console.log("====================================");
 
   return (
     <>
@@ -36,7 +40,9 @@ function Declaration() {
       <div className=" border-4  bg-white shadow-md rounded-md">
         <DeclarationsItems
           declarations={
-            filteredDeclaration.length ? filteredDeclaration : declarations
+            filteredDeclaration.length
+              ? filteredDeclaration
+              : state?.declarations
           }
           updateStatus={updateStatus}
           sortByStatus={sortByStatus}

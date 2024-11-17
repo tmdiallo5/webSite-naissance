@@ -45,14 +45,18 @@ function DeclarationsItems(props: Props) {
         </button>
         <span className={`col-span-2 text-center`}>ACTIONS</span>
       </article>
-      {declarations.map((item: Declarations, index: number) => (
-        <DeclarationsItem
-          action={updateStatus}
-          declaration={item}
-          index={index}
-          key={item.id}
-        />
-      ))}
+      {declarations && declarations.length ? (
+        <>
+          {declarations.map((item: Declarations, index: number) => (
+            <DeclarationsItem
+              action={updateStatus}
+              declaration={item}
+              index={index}
+              key={item.id}
+            />
+          ))}
+        </>
+      ) : null}
     </>
   );
 }

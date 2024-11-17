@@ -1,17 +1,22 @@
 import { Declarations } from "@/types/Declarations";
 import React, { useState } from "react";
 
+type StateData = {
+  declarations: Declarations[];
+};
+
 type Props = {
-  state: Declarations[];
+  state: StateData;
   updateDeclarations: (declaration: Declarations[]) => void;
+  updateRequests?: (declaration: Declarations[]) => void;
 };
 
 //Creer le context
 export const ApplicationContext = React.createContext<Props>({} as Props);
 function ApplicationContextProvider({ children }: any) {
-  const [state, setState] = useState([]);
+  const [state, setState] = useState<StateData>({ declarations: [] });
   const updateDeclarations = (declarations: Declarations[]) => {
-    setState((current) => ({ ...current, state: declarations }));
+    setState((current) => ({ ...current, declarations }));
   };
 
   return (

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import ApplicationContextProvider from "./context/applicationContextProvider";
+import ApplicationContextProvider from "./context/ApplicationContextProvider";
 
 function App() {
   return (
