@@ -11,6 +11,13 @@ type Props = {
   state: StateData;
   updateDeclarations: (declaration: Declarations[]) => void;
   updateRequests?: (declaration: Declarations[]) => void;
+  updateDeclarationStatus: ({
+    id,
+    status,
+  }: {
+    id: string;
+    status: string;
+  }) => void;
 };
 
 //Creer le context
@@ -24,8 +31,20 @@ function ApplicationContextProvider({ children }: any) {
     // setState((current) => ({ ...current, declarations }));
   };
 
+  const updateDeclarationStatus = ({
+    id,
+    status,
+  }: {
+    id: string;
+    status: string;
+  }) => {
+    dispatch({ type: updateDeclarationStatus, data: { id, status } });
+  };
+
   return (
-    <ApplicationContext.Provider value={{ state, updateDeclarations }}>
+    <ApplicationContext.Provider
+      value={{ state, updateDeclarations, updateDeclarationStatus }}
+    >
       {children}
     </ApplicationContext.Provider>
   );

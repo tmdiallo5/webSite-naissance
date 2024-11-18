@@ -6,15 +6,15 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 function useDeclarations () {
 
-    const {state, updateDeclarations} = useContext(ApplicationContext);
+    const {state, updateDeclarations, updateDeclarationStatus} = useContext(ApplicationContext);
 
     const filtRef = useRef<any>()
     const [statusOrder, setStatusOrder] = useState(1);
     const [dateOrder, setDateOrder] = useState(1);
     const [declarations, setDeclaration] = useState<Declarations[]>([]);
-    const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>([]);
+    const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>(state.declarations);
 
-    const updateStatus = (data: { id: string; status: string }) => {
+    const updateStatusWithoutContext = (data: { id: string; status: string }) => {
       const toUpdate = declarations.filter(
         ({ id }: Declarations) => id === data.id
       )[0];
@@ -23,7 +23,9 @@ function useDeclarations () {
       );
       const updated = { ...toUpdate, status: data.status };
       setDeclaration([...tokeep, updated]);
-    }
+    };
+
+    const updateStatus = (data: { id: string; status: string }) => updateDeclarationStatus(data);
    
 
       const sortByStatus = () => {
