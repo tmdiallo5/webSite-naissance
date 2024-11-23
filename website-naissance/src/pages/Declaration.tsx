@@ -31,7 +31,7 @@ function Declaration() {
           className="bg-gray-200 px-3 py-2 rounded-md !w-96"
         />
         <Link
-          to={"/private/declaration/new"}
+          to={"/private/declaration/nouvelle-declaration"}
           className="bg-green-700 rounded-md text-white px-3 py-2"
         >
           Nouvelle declaration

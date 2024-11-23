@@ -4,7 +4,7 @@ const NAV_LINKS = [
         label: "Les declarations"
     },
     {
-        to: "/private/requests",
+        to: "/private/demandes",
         label: "Les demandes"
     },
     {
