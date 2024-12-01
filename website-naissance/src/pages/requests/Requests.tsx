@@ -8,13 +8,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Requests() {
-  const { state, updateTitle, updateRequests, updateRequestStatus } =
-    useContext(GlobalApplicationContext);
+  const { state, updateTitle, setRequests, updateRequestStatus } = useContext(
+    GlobalApplicationContext
+  );
 
   const getRequests = async () => {
     const data = await search("requests");
     console.log("Données récupérées :", data);
-    updateRequests(data);
+    setRequests(data);
     updateTitle({ title: "Demandes" });
   };
 

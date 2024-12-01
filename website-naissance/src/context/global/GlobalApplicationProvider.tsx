@@ -1,5 +1,7 @@
 import { Declarations } from "@/types/Declarations";
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
+import GlobalApplicationReducer from "./GlobalApplicationReducer";
+import { APPLICATION_STATE } from "@/utils";
 
 type StateProps = {
   title: string;
@@ -10,50 +12,44 @@ type StateProps = {
 type Props = {
   state: StateProps;
   updateTitle: (data: any) => void;
-  updateRequests: (data: any) => void;
+  setRequests: (data: any) => void;
   updateRequestStatus: (data: any) => void;
 };
 
 export const GlobalApplicationContext = createContext<Props>({} as Props);
 
 function GlobalApplicationProvider({ children }: any) {
-  const [state, setState] = useState<StateProps>({
+  /* const [state, setState] = useState<StateProps>({
     title: "Titre par defaut",
     requests: [],
     declarations: [],
-  });
+  }); */
+  const [state, dispatch] = useReducer(
+    GlobalApplicationReducer,
+    APPLICATION_STATE
+  );
   const updateTitle = (data: any) => {
+    dispatch({ type: "UPDATE_TITLE", data });
     //const newState = { ...state, title: data.title };
 
-    setState((current) => ({ ...current, title: data.title }));
+    // setState((current) => ({ ...current, title: data.title }));
   };
 
-  const updateRequests = (requests: any[]) => {
+  const setRequests = (requests: any[]) => {
+    dispatch({ type: "SET_REQUESTS", data: requests });
     console.log({ requests });
     // const newState = { ...state, requests };
     //console.log("Nouvel état :", newState);
 
-    setState((current) => ({ ...current, requests }));
+    //setState((current) => ({ ...current, requests }));
   };
 
-  const updateRequestStatus = ({ id, status }: any) => {
-    const { requests } = state;
-    const requestsToUpdate = requests.filter(
-      ({ id: requestsId }) => requestsId === id
-    )[0];
-    const requestsToKeep = requests.filter(
-      ({ id: requestsId }) => requestsId !== id
-    )[0];
-    const updateRequests = [
-      ...requestsToKeep,
-      { ...requestsToUpdate, status: status },
-    ];
-    setState({ ...state, requests: updateRequests });
-    console.log(id, status);
+  const updateRequestStatus = (data: any) => {
+    dispatch({ type: "SET_REQUESTS_STATUS", data });
   };
   return (
     <GlobalApplicationContext.Provider
-      value={{ state, updateTitle, updateRequests, updateRequestStatus }}
+      value={{ state, updateTitle, setRequests, updateRequestStatus }}
     >
       {children}
     </GlobalApplicationContext.Provider>
