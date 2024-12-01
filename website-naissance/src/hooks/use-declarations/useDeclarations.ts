@@ -1,10 +1,13 @@
 import { ApplicationContext } from "@/context/ApplicationContextProvider";
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationProvider";
 import Declaration from "@/pages/Declaration";
 import { search } from "@/services";
 import { Declarations } from "@/types/Declarations";
 import { useContext, useEffect, useRef, useState } from "react";
 
 function useDeclarations () {
+
+    const {updateTitle} = useContext(GlobalApplicationContext);
 
     const {state, updateDeclarations, updateDeclarationStatus} = useContext(ApplicationContext);
 
@@ -90,6 +93,7 @@ function useDeclarations () {
       };
     
       useEffect(() => {
+        updateTitle({"title": "Déclaration"}); 
         getDeclaration();
       }, []);
 
