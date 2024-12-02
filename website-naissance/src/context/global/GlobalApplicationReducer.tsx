@@ -1,11 +1,11 @@
 import { action } from "@/routes/destroy";
+import { Requests } from "@/types/Requests";
 import {
   APPLICATION_STATE,
   SET_REQUESTS,
   SET_REQUESTS_STATUS,
   UPDATE_TITLE,
 } from "@/utils";
-import React from "react";
 
 function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
   const { type, data } = action;
@@ -22,12 +22,12 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
     case SET_REQUESTS_STATUS:
       const { requests } = state;
       const { id, status } = data;
-      const requestsToUpdate = requests.filter(
+      const requestsToUpdate: Requests = requests.filter(
         ({ id: requestsId }: any) => requestsId === id
       )[0];
-      const requestsToKeep = requests.filter(
+      const requestsToKeep: Requests[] = requests.filter(
         ({ id: requestsId }: any) => requestsId !== id
-      )[0];
+      );
       const updateRequests = [
         ...requestsToKeep,
         { ...requestsToUpdate, status: status },
