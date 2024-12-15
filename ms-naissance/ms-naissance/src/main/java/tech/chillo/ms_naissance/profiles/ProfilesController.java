@@ -18,14 +18,17 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("profiles")
 public class ProfilesController {
 
-    Logger logger =  LoggerFactory.getLogger(ProfilesController.class);
+    ProfilesService profilesService = new ProfilesService();
+    Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
 
     @PostMapping
     public void create(@RequestBody Profile profile){
-        logger.trace("Creation du compte" + profile.getEmail());
-        logger.debug("Creation du compte" + profile.getEmail());
+
+       // logger.trace("Creation du compte" + profile.getEmail());
+        //logger.debug("Creation du compte" + profile.getEmail());
         logger.info("Creation du compte" + profile.getEmail());
-        logger.warn("Creation du compte" + profile.getEmail());
-        logger.error("Creation du compte" + profile.getEmail());
+        //logger.warn("Creation du compte" + profile.getEmail());
+        //logger.error("Creation du compte" + profile.getEmail());
+        this.profilesService.create(profile);
     }
 }
