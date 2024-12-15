@@ -18,7 +18,12 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("profiles")
 public class ProfilesController {
 
-    ProfilesService profilesService = new ProfilesService();
+    private final ProfilesService profilesService;
+
+    public ProfilesController(ProfilesService profilesService) {
+        this.profilesService = profilesService;
+    }
+
     Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
 
     @PostMapping
