@@ -2,6 +2,4 @@ spring:
   application:
     name:
       ms-naissance
-logging:
-  level:
-    tech.chillo: trace
+

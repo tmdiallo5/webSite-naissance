@@ -1,10 +1,11 @@
 import { Declarations } from "@/types/Declarations";
 import { createContext, useReducer, useState } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
-import { APPLICATION_STATE } from "@/utils";
+import { APPLICATION_STATE, FILTER_REQUESTS } from "@/utils";
 
 type StateProps = {
   title: string;
+  requestsFilter?: string;
   requests: any[];
   declarations: Declarations[];
 };
@@ -14,6 +15,7 @@ type Props = {
   updateTitle: (data: any) => void;
   setRequests: (data: any) => void;
   updateRequestStatus: (data: any) => void;
+  filterRequests: (data: any) => void;
 };
 
 export const GlobalApplicationContext = createContext<Props>({} as Props);
@@ -47,9 +49,20 @@ function GlobalApplicationProvider({ children }: any) {
   const updateRequestStatus = (data: any) => {
     dispatch({ type: "SET_REQUESTS_STATUS", data });
   };
+
+  const filterRequests = (data: any) => {
+    dispatch({ type: FILTER_REQUESTS, data });
+  };
+
   return (
     <GlobalApplicationContext.Provider
-      value={{ state, updateTitle, setRequests, updateRequestStatus }}
+      value={{
+        state,
+        updateTitle,
+        setRequests,
+        updateRequestStatus,
+        filterRequests,
+      }}
     >
       {children}
     </GlobalApplicationContext.Provider>

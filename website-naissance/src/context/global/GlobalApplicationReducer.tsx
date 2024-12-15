@@ -2,6 +2,8 @@ import { action } from "@/routes/destroy";
 import { Requests } from "@/types/Requests";
 import {
   APPLICATION_STATE,
+  APPLICATION_STATE_KEY,
+  FILTER_REQUESTS,
   SET_REQUESTS,
   SET_REQUESTS_STATUS,
   UPDATE_TITLE,
@@ -9,6 +11,10 @@ import {
 
 function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
   const { type, data } = action;
+  const sessionState = sessionStorage.getItem(APPLICATION_STATE_KEY);
+  if (sessionState) {
+    state = JSON.parse(sessionState);
+  }
 
   switch (type) {
     case UPDATE_TITLE:
@@ -36,8 +42,12 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
       console.log(id, status);
 
       break;
-  }
 
+    case FILTER_REQUESTS:
+      state = { ...state, requestsFilter: data };
+      break;
+  }
+  sessionStorage.setItem(APPLICATION_STATE_KEY, JSON.stringify(state));
   return state;
 }
 
