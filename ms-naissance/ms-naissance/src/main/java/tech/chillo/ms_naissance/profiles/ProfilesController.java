@@ -21,7 +21,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RequestMapping("profiles")
 public class ProfilesController {
 
-    private final ProfilesService profilesService;
+    private  ProfilesService profilesService;
 
     public ProfilesController(ProfilesService profilesService) {
         this.profilesService = profilesService;
@@ -53,5 +53,10 @@ public class ProfilesController {
     @PutMapping(path = "{id}")
     public Profile update(@PathVariable ("id")  int id, @RequestBody Profile profile){
         return this.profilesService.update(id, profile);
+    }
+
+    @DeleteMapping(path = "{id}")
+    public void delete (@PathVariable ("id") int id){
+        this.profilesService.delete(id);
     }
 }
