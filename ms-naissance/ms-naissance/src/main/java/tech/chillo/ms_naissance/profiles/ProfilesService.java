@@ -18,5 +18,6 @@ public class ProfilesService {
         logger.info("Nouveau compte avec l'email {}", profile.getEmail() );
         this.profilesRepository.save(profile);
 
+
     }
 }
