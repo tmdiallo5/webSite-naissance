@@ -29,8 +29,22 @@ public class ProfilesService {
         return this.profilesRepository.findAll();
     }
 
+
     public Profile read(int id) {
-      Optional<Profile> profileOptional = this.profilesRepository.findById(id);
-      return  profileOptional.orElse(null);
+       Optional<Profile> profileOptional = this.profilesRepository.findById(id);
+       return profileOptional.orElse(null);
+    }
+
+    public Profile update(int id, Profile profile) {
+        Profile profileInDatabase = this.read(id);
+
+        profileInDatabase.setFirstName(profile.getFirstName());
+        profileInDatabase.setLastName(profile.getLastName());
+        profileInDatabase.setEmail(profile.getEmail());
+        profileInDatabase.setPhone(profile.getPhone());
+        profileInDatabase.setPassword(profile.getPassword());
+
+        profileInDatabase = this.profilesRepository.save(profileInDatabase);
+        return profileInDatabase;
     }
 }
