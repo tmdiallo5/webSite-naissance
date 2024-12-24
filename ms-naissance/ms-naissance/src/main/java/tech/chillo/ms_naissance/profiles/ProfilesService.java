@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import tech.chillo.ms_naissance.Profile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfilesService {
@@ -25,5 +26,10 @@ public class ProfilesService {
 
     public List<Profile> search() {
         return this.profilesRepository.findAll();
+    }
+
+    public Profile read(int id) {
+      Optional<Profile> profileOptional = this.profilesRepository.findById(id);
+      return  profileOptional.orElse(null);
     }
 }

@@ -45,4 +45,9 @@ public class ProfilesController {
     public List<Profile> search(){
         return this.profilesService.search();
     }
+
+    @GetMapping(path = "{id}")
+    public Profile read(@PathVariable int id){
+        return this.profilesService.read(id);
+    }
 }
