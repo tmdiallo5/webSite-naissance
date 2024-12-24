@@ -1,18 +1,21 @@
 package tech.chillo.ms_naissance.profiles;
 
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import tech.chillo.ms_naissance.Profile;
+import lombok.AllArgsConstructor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
+import tech.chillo.ms_naissance.Profile;
+
+import java.util.List;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+
 
 /**
     Controlleur pour gerer les operations sur les profiles
 */
+
 
 @RestController
 @RequestMapping("profiles")
@@ -24,9 +27,11 @@ public class ProfilesController {
         this.profilesService = profilesService;
     }
 
-    Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
+    Logger logger = LoggerFactory.getLogger(ProfilesController.class);
+    //Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
+    //Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
 
-    @PostMapping
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void create(@RequestBody Profile profile){
 
        // logger.trace("Creation du compte" + profile.getEmail());
@@ -35,5 +40,14 @@ public class ProfilesController {
         //logger.warn("Creation du compte" + profile.getEmail());
         //logger.error("Creation du compte" + profile.getEmail());
         this.profilesService.create(profile);
+    }
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    public List<Profile> search(){
+        return this.profilesService.search();
+    }
+
+    @GetMapping(path = "{id}")
+    public Profile read(@PathVariable int id){
+        return this.profilesService.read(id);
     }
 }
