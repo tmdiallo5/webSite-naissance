@@ -1,31 +1,23 @@
 package tech.chillo.ms_naissance;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "profiles")
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "first_name")
+
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
     private String password;
-
-    public Profile() {
-    }
-
-    public Profile(int id, String firstName, String lastName, String email, String phone, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-    }
 
     public int getId() {
         return id;

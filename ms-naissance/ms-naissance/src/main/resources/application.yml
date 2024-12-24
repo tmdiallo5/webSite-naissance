@@ -2,4 +2,6 @@ spring:
   application:
     name:
       ms-naissance
-
+  jpa:
+    hibernate:
+      ddl-auto: validate

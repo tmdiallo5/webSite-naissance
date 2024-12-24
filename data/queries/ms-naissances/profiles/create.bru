@@ -1,0 +1,25 @@
+meta {
+  name: create
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/profiles
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "firstName": "Mavi",
+      "lastName": " Porter",
+      "email": "underwoodporter@genmex.com",
+      "phone": "+1 (867) 575-2176",
+      "password": "naissance"
+    }
+}
