@@ -1,0 +1,26 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/profiles/9
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "id": 9,
+      "firstName": "Thierno",
+      "lastName": " Bah",
+      "email": "underwoodpotrter@genmex.com",
+      "phone": "+1 (867) 575-21769",
+      "password": "naissancee"
+  } 
+}
