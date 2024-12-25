@@ -1,4 +1,4 @@
-package tech.chillo.ms_naissance.exceptions;
+package tech.chillo.ms_naissance.shared.exceptions;
 
 import java.time.LocalDateTime;
 

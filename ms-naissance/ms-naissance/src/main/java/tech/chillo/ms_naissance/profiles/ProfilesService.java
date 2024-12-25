@@ -1,26 +1,30 @@
 package tech.chillo.ms_naissance.profiles;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import tech.chillo.ms_naissance.Profile;
+import tech.chillo.ms_naissance.shared.services.ValidationService;
 
 import java.util.List;
 import java.util.Optional;
-
+@AllArgsConstructor
+@Slf4j
 @Service
 public class ProfilesService {
 
     private final ProfilesRepository profilesRepository;
+    private final ValidationService validationService;
 
-    public ProfilesService(ProfilesRepository profilesRepository) {
-        this.profilesRepository = profilesRepository;
-    }
-    Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
+
+   // Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
     public void create(Profile profile){
-
-        logger.info("Nouveau compte avec l'email {}", profile.getEmail() );
+        log.info("Nouveau compte avec l'email {}", profile.getEmail());
+        this.validationService.validateEmail(profile.getEmail());
+        this.validationService.validatephone(profile.getPhone());
         this.profilesRepository.save(profile);
 
 
