@@ -1,0 +1,15 @@
+meta {
+  name: readById
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:8080/profiles
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}

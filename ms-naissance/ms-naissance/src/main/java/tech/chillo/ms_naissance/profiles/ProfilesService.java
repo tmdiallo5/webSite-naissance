@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tech.chillo.ms_naissance.shared.services.AddressesService;
 import tech.chillo.ms_naissance.shared.services.ValidationService;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class ProfilesService {
 
+    private final AddressesService addressesService;
     private final ProfilesRepository profilesRepository;
     private final ValidationService validationService;
 
@@ -20,6 +22,10 @@ public class ProfilesService {
    // Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
     public void create(Profile profile){
         log.info("Nouveau compte avec l'email {}", profile.getEmail());
+        if (profile.getAddress() != null){
+            this.addressesService.create(profile.getAddress());
+        }
+
         this.validationService.validateEmail(profile.getEmail());
         this.validationService.validatephone(profile.getPhone());
         this.profilesRepository.save(profile);
