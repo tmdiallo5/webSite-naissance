@@ -1,4 +1,4 @@
-package tech.chillo.ms_naissance;
+package tech.chillo.ms_naissance.profiles;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,8 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Enumerated(EnumType.STRING)
+    private Civility civility;
     private String firstName;
     private String lastName;
     private String email;
