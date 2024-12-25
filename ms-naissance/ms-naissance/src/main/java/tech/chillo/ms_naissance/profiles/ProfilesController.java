@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tech.chillo.ms_naissance.Profile;
 
@@ -31,6 +32,7 @@ public class ProfilesController {
     //Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
     //Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void create(@RequestBody Profile profile){
 
@@ -55,6 +57,7 @@ public class ProfilesController {
         return this.profilesService.update(id, profile);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(path = "{id}")
     public void delete (@PathVariable ("id") int id){
         this.profilesService.delete(id);
