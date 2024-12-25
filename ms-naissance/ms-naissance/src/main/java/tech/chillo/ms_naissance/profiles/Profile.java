@@ -29,7 +29,7 @@ public class Profile {
      l'adresse peut aussi appartenir a un autre utilisateur(CascadeType.DETACH).
     * */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
-    @JoinColumn(name = "adresses_id")
+    @JoinColumn(name = "addresses_id")
     private Address address;
 
 
