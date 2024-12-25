@@ -1,5 +1,6 @@
 package tech.chillo.ms_naissance.profiles;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,8 @@ public class ProfilesService {
 
     public Profile read(int id) {
        Optional<Profile> profileOptional = this.profilesRepository.findById(id);
-       return profileOptional.orElse(null);
+       return profileOptional.orElseThrow(() -> new EntityNotFoundException(
+               "Aucune entite ne correspond aux parametres fournis "));
     }
 
     public Profile update(int id, Profile profile) {
