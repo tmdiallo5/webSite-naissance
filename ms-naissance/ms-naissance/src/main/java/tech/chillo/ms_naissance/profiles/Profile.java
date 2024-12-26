@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import tech.chillo.ms_naissance.shared.entities.Address;
 
-
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "profiles")
 public class Profile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
