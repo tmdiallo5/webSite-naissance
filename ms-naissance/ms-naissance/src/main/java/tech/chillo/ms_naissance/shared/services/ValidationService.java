@@ -8,7 +8,10 @@ public class ValidationService {
         if (email == null){
             throw new RuntimeException("L'email est requis");
         }
-        if (email.indexOf('@') == -1 || email.indexOf('@') == email.length()){
+        if (email.indexOf('@') == -1){
+            throw new RuntimeException("L'email est invalide");
+        }
+        if (email.indexOf('.') == -1 || email.indexOf('.') < email.indexOf('@')){
             throw new RuntimeException("L'email est invalide");
         }
     }
