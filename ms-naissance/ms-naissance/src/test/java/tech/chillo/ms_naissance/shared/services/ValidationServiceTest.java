@@ -20,6 +20,20 @@ class ValidationServiceTest {
 
         // (Assert) Afficher les resultats
     }
+    @Test
+    public void shouldThrowExceptionWhenEmailsIsInvalid(){
+        // (Arrange)
+        String email = null;
+
+        //Act
+        RuntimeException exception = assertThrows(
+                RuntimeException.class,
+                () -> validationService.validateEmail(email)
+        );
+
+        // Assert
+        assertEquals(exception.getMessage(), "L'email est invalide");
+    }
 
     @Test
     void validatephone() {
