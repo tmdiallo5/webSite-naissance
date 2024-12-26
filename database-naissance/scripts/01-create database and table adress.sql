@@ -10,3 +10,11 @@ create table ADRESS (
     city varchar(200),
     country varchar(100)
 );
+
+
+rename table ADRESS to ADDRESS;
+
+insert into ADDRESS (street, zip, city, country) value ('12 rue des palmiers', 3500, 'RENNES',
+'FRANCE');
+SELECT * 
+FROM ADDRESS;
