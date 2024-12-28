@@ -4,6 +4,7 @@ package tech.chillo.ms_naissance.profiles;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -44,7 +45,7 @@ class ProfilesControllerTest {
 
     }
 
-
+    @DisplayName("Lire une liste de profiles")
     @Test
     void search() throws Exception {
         this.mockMvc.perform(get("/profiles"))
@@ -54,7 +55,7 @@ class ProfilesControllerTest {
                 .andExpect(content().string(containsString("two@email.test")));
 
     }
-    
+    @DisplayName("Creer un profile")
     @Test
     void create() throws Exception {
         // Arrange

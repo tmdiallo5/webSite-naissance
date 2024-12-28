@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +200,7 @@
       <workItem from="1735248268688" duration="1405000" />
       <workItem from="1735249700437" duration="1951000" />
       <workItem from="1735303948715" duration="1238000" />
-      <workItem from="1735402571732" duration="4194000" />
+      <workItem from="1735402571732" duration="4517000" />
     </task>
     <servers />
   </component>
