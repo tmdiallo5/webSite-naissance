@@ -29,7 +29,7 @@ public class ProfilesRepositoryTest {
 
     }
     @AfterEach
-    void reset(){
+    void tearDown(){        //pour le reset
 
         this.profilesRepository.deleteAll();
 

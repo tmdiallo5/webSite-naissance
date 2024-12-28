@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/ProfilesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/ProfilesRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +19,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -78,7 +78,38 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProfilesRepositoryTest">
+  <component name="RunManager" selected="JUnit.ProfilesControllerTest">
+    <configuration name="ProfilesControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ms-naissance" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.chillo.ms_naissance.profiles.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.chillo.ms_naissance.profiles" />
+      <option name="MAIN_CLASS_NAME" value="tech.chillo.ms_naissance.profiles.ProfilesControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfilesControllerTest.search" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ms-naissance" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.chillo.ms_naissance.profiles.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.chillo.ms_naissance.profiles" />
+      <option name="MAIN_CLASS_NAME" value="tech.chillo.ms_naissance.profiles.ProfilesControllerTest" />
+      <option name="METHOD_NAME" value="search" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProfilesRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ms-naissance" />
       <extension name="coverage">
@@ -126,38 +157,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfilesServiceTest.shouldReturnAllProfiles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ms-naissance" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tech.chillo.ms_naissance.profiles.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tech.chillo.ms_naissance.profiles" />
-      <option name="MAIN_CLASS_NAME" value="tech.chillo.ms_naissance.profiles.ProfilesServiceTest" />
-      <option name="METHOD_NAME" value="shouldReturnAllProfiles" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ValidationServiceTest.shouldThrowExceptionWhenEmailsIsInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ms-naissance" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tech.chillo.ms_naissance.shared.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tech.chillo.ms_naissance.shared.services" />
-      <option name="MAIN_CLASS_NAME" value="tech.chillo.ms_naissance.shared.services.ValidationServiceTest" />
-      <option name="METHOD_NAME" value="shouldThrowExceptionWhenEmailsIsInvalid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MsNaissanceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" value="local" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -169,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProfilesControllerTest" />
+        <item itemvalue="JUnit.ProfilesControllerTest.search" />
         <item itemvalue="JUnit.ProfilesRepositoryTest" />
         <item itemvalue="JUnit.ProfilesRepositoryTest.shouldReturnEmptyProfilesByEmail" />
         <item itemvalue="JUnit.ProfilesRepositoryTest.shouldReturnProfilesByEmail" />
-        <item itemvalue="JUnit.ProfilesServiceTest.shouldReturnAllProfiles" />
-        <item itemvalue="JUnit.ValidationServiceTest.shouldThrowExceptionWhenEmailsIsInvalid" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +202,7 @@
       <workItem from="1735248268688" duration="1405000" />
       <workItem from="1735249700437" duration="1951000" />
       <workItem from="1735303948715" duration="1238000" />
-      <workItem from="1735402571732" duration="1054000" />
+      <workItem from="1735402571732" duration="2916000" />
     </task>
     <servers />
   </component>
