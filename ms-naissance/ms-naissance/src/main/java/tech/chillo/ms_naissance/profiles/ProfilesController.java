@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -32,7 +32,7 @@ public class ProfilesController {
 
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<Profile> search(){
+    public Set<ProfileDTO> search(){
         return this.profilesService.search();
     }
     @GetMapping(path = "{id}")
