@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tech.chillo.ms_naissance.profiles.Profile;
+import tech.chillo.ms_naissance.profiles.ProfileDTO;
 import tech.chillo.ms_naissance.profiles.ProfilesService;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -20,7 +21,7 @@ public class AuthentificationController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "sign-up")
-    public void create(@RequestBody Profile profile){
-        this.authentificationService.create(profile);
+    public void create(@RequestBody ProfileDTO profileDTO){
+        this.authentificationService.create(profileDTO);
     }
 }
