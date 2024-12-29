@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import tech.chillo.ms_naissance.shared.services.AddressesService;
 import tech.chillo.ms_naissance.shared.services.ValidationService;
@@ -19,11 +20,13 @@ public class ProfilesService {
     private final AddressesService addressesService;
     private final ProfilesRepository profilesRepository;
     private final ValidationService validationService;
+    private BCryptPasswordEncoder passwordEncoder;
 
-    public ProfilesService(AddressesService addressesService, ProfilesRepository profilesRepository, ValidationService validationService) {
+    public ProfilesService(AddressesService addressesService, ProfilesRepository profilesRepository, ValidationService validationService, BCryptPasswordEncoder passwordEncoder) {
         this.addressesService = addressesService;
         this.profilesRepository = profilesRepository;
         this.validationService = validationService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
@@ -32,7 +35,9 @@ public class ProfilesService {
         if (profile.getAddress() != null){
             this.addressesService.create(profile.getAddress());
         }
-
+        String userPassword = profile.getPassword();
+        String encodPassword = this.passwordEncoder.encode(userPassword);
+        profile.setPassword(encodPassword);
         this.validationService.validateEmail(profile.getEmail());
         this.validationService.validatephone(profile.getPhone());
         this.profilesRepository.save(profile);
