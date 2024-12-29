@@ -19,31 +19,18 @@ public class ProfilesService {
 
     private final AddressesService addressesService;
     private final ProfilesRepository profilesRepository;
-    private final ValidationService validationService;
-    private BCryptPasswordEncoder passwordEncoder;
+  //  private final ValidationService validationService;
+   // private BCryptPasswordEncoder passwordEncoder;
 
-    public ProfilesService(AddressesService addressesService, ProfilesRepository profilesRepository, ValidationService validationService, BCryptPasswordEncoder passwordEncoder) {
+    public ProfilesService(AddressesService addressesService, ProfilesRepository profilesRepository) {
         this.addressesService = addressesService;
         this.profilesRepository = profilesRepository;
-        this.validationService = validationService;
-        this.passwordEncoder = passwordEncoder;
+
+
     }
 
     Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
-    public void create(Profile profile){
-        logger.info("Nouveau compte avec l'email {}", profile.getEmail());
-        if (profile.getAddress() != null){
-            this.addressesService.create(profile.getAddress());
-        }
-        String userPassword = profile.getPassword();
-        String encodPassword = this.passwordEncoder.encode(userPassword);
-        profile.setPassword(encodPassword);
-        this.validationService.validateEmail(profile.getEmail());
-        this.validationService.validatephone(profile.getPhone());
-        this.profilesRepository.save(profile);
 
-
-    }
 
     public List<Profile> search() {
         return this.profilesRepository.findAll();

@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/security/ApplicationPasswordEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/authentification/AuthentificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/authentification/AuthentificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/create.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/delete.bru" beforeDir="false" afterPath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/delete.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/readById.bru" beforeDir="false" afterPath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/readById.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/search.bru" beforeDir="false" afterPath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/search.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/update.bru" beforeDir="false" afterPath="$PROJECT_DIR$/data/queries/ms-naissances/profiles/update.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/ProfilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/ProfilesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/ProfilesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/ProfilesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +210,7 @@
       <workItem from="1735249700437" duration="1951000" />
       <workItem from="1735303948715" duration="1238000" />
       <workItem from="1735402571732" duration="4517000" />
-      <workItem from="1735494601385" duration="1551000" />
+      <workItem from="1735494601385" duration="3314000" />
     </task>
     <servers />
   </component>

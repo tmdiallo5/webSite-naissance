@@ -29,17 +29,8 @@ public class ProfilesController {
     //Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
     //Logger logger =  LoggerFactory.getLogger(ProfilesService.class);
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public void create(@RequestBody Profile profile){
 
-       // logger.trace("Creation du compte" + profile.getEmail());
-        //logger.debug("Creation du compte" + profile.getEmail());
-        logger.info("Creation du compte" + profile.getEmail());
-        //logger.warn("Creation du compte" + profile.getEmail());
-        //logger.error("Creation du compte" + profile.getEmail());
-        this.profilesService.create(profile);
-    }
+
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<Profile> search(){
         return this.profilesService.search();
