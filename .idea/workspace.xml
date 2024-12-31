@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/test/java/tech/chillo/ms_naissance/profiles/ProfilesControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/profiles/Profile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +51,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "16-les-roles-utilisateurs",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

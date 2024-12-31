@@ -2,13 +2,17 @@ package tech.chillo.ms_naissance.profiles;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import tech.chillo.ms_naissance.shared.entities.Address;
+
+import java.util.Collection;
 
 
 @Builder
 @Entity
 @Table(name = "profiles")
-public class Profile {
+public class Profile implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +24,7 @@ public class Profile {
     private String email;
     private String phone;
     private String password;
+    private boolean active = false;
 
     /**
      * @ManyToOne signifie que plusieurs profiles(utilisateurs) peuvent avoir une adresse.
@@ -99,8 +104,38 @@ public class Profile {
         this.phone = phone;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.active;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.active;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.active;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.active;
     }
 
     public void setPassword(String password) {
