@@ -33,6 +33,10 @@ public class Profile {
     @JoinColumn(name = "addresses_id")
     private Address address;
 
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "roles_id")
+    private Role role;
+
     public int getId() {
         return id;
     }
