@@ -39,7 +39,7 @@ class ProfilesControllerTest {
     @BeforeEach
     void setUp() {
         // Arrange
-        ProfileDTO profileOne = new ProfileDTO(null, null, null, "one@gmail.test", null, null);
+        ProfileDTO profileOne = new ProfileDTO(null, null, null, "one@email.test", null, null);
         ProfileDTO profileTwo = new ProfileDTO(null, null, null, "two@email.test", null, null);
 
         when(profilesService.search()).thenReturn(Set.of(profileOne, profileTwo));

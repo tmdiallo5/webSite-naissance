@@ -4,9 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import tech.chillo.ms_naissance.shared.entities.Address;
 
+
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "profiles")
 public class Profile {
@@ -32,6 +31,25 @@ public class Profile {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "addresses_id")
     private Address address;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "roles_id")
+    private Role role;
+
+    public Profile() {
+    }
+
+    public Profile(int id, Civility civility, String firstName, String lastName, String email, String phone, String password, Address address, Role role) {
+        this.id = id;
+        this.civility = civility;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.address = address;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -95,5 +113,13 @@ public class Profile {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
