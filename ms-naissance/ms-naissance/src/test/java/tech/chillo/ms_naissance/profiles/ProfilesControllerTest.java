@@ -61,7 +61,7 @@ class ProfilesControllerTest {
     @Test
     void create() throws Exception {
         // Arrange
-        Profile profileOne = Profilero.builder().email("one@email.test").build();
+        Profile profileOne = Profile .builder().email("one@email.test").build();
         String profileAsString = new ObjectMapper().writeValueAsString(profileOne);
 
 
