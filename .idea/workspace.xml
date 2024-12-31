@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/resources/db/migration/V1.8__create_and_insert_roles.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/resources/db/migration/V1.9__update_profile.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/resources/db/migration/V1.8__create_and_insert_roles.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/resources/db/migration/V1.8__create-and-insert-roles.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
