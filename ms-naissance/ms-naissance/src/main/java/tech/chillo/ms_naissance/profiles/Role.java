@@ -1,24 +1,23 @@
 package tech.chillo.ms_naissance.profiles;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Getter
     private String name;
+    @Getter
     private String description;
     @ManyToMany
     @JoinTable(
@@ -27,4 +26,6 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "permissions_id")
     )
     private List<Permission> permissions;
+
+
 }

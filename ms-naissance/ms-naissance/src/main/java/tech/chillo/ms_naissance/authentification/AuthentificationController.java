@@ -15,6 +15,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 public class AuthentificationController {
     private AuthentificationService authentificationService;
 
+
     public AuthentificationController(AuthentificationService authentificationService) {
         this.authentificationService = authentificationService;
     }
