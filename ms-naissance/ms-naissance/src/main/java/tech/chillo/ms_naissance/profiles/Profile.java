@@ -3,10 +3,13 @@ package tech.chillo.ms_naissance.profiles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import tech.chillo.ms_naissance.shared.entities.Address;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
 @Builder
@@ -106,7 +109,17 @@ public class Profile implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        // Ajout du role
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.role.getName().toUpperCase()));
+
+        // Ajout des permissions
+        for(Permission permission: this.role.getPermissions()){
+            authorities.add(new SimpleGrantedAuthority(permission.getName()));
+        }
+
+        return authorities;
     }
 
     public String getPassword() {
