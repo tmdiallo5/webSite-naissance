@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 
-@Builder
+
 @Entity
 @Table(name = "profiles")
 public class Profile implements UserDetails {
@@ -57,6 +57,89 @@ public class Profile implements UserDetails {
         this.password = password;
         this.address = address;
         this.role = role;
+    }
+
+    // Builder Pattern
+    public static class Builder {
+        private int id;
+        private Civility civility;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String phone;
+        private String password;
+        private boolean active = false;
+        private Address address;
+        private Role role;
+
+        public Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder civility(Civility civility) {
+            this.civility = civility;
+            return this;
+        }
+
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder active(boolean active) {
+            this.active = active;
+            return this;
+        }
+
+        public Builder address(Address address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder role(Role role) {
+            this.role = role;
+            return this;
+        }
+
+        public Profile build() {
+            Profile profile = new Profile();
+            profile.id = this.id;
+            profile.civility = this.civility;
+            profile.firstName = this.firstName;
+            profile.lastName = this.lastName;
+            profile.email = this.email;
+            profile.phone = this.phone;
+            profile.password = this.password;
+            profile.active = this.active;
+            profile.address = this.address;
+            profile.role = this.role;
+            return profile;
+        }
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public int getId() {

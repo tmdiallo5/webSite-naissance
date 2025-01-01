@@ -5,9 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -27,5 +25,45 @@ public class Role {
     )
     private List<Permission> permissions;
 
+    public Role() {
+    }
 
+    public Role(int id, String name, String description, List<Permission> permissions) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.permissions = permissions;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
 }

@@ -1,7 +1,7 @@
 package tech.chillo.ms_naissance.profiles;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
+
 import java.util.Set;
 
 import static org.hamcrest.Matchers.containsString;
