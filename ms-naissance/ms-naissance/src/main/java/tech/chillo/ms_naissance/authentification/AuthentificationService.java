@@ -9,6 +9,7 @@ import tech.chillo.ms_naissance.security.activation.Activation;
 import tech.chillo.ms_naissance.security.activation.ActivationsService;
 import tech.chillo.ms_naissance.shared.services.ValidationService;
 
+import java.util.Map;
 
 
 @Service
@@ -49,5 +50,11 @@ public class AuthentificationService {
         logger.info("Le code d'activation pour {} est {}", profile.getEmail(), activation.getUserCode());
 
 
+    }
+
+    public void activate(Map<String, String> parameters) {
+       Profile profile = this.activationsService.validateAndReturnProfile(parameters);
+       profile.setActive(true);
+       this.profilesRepository.save(profile);
     }
 }

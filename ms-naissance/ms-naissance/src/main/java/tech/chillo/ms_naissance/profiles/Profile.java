@@ -58,6 +58,9 @@ public class Profile implements UserDetails {
         this.address = address;
         this.role = role;
     }
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     // Builder Pattern
     public static class Builder {
@@ -121,6 +124,12 @@ public class Profile implements UserDetails {
             this.role = role;
             return this;
         }
+
+        public boolean isActive() {
+            return active;
+        }
+
+
 
         public Profile build() {
             Profile profile = new Profile();

@@ -7,6 +7,8 @@ import tech.chillo.ms_naissance.profiles.Profile;
 import tech.chillo.ms_naissance.profiles.ProfileDTO;
 import tech.chillo.ms_naissance.profiles.ProfilesService;
 
+import java.util.Map;
+
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 
@@ -24,5 +26,11 @@ public class AuthentificationController {
     @PostMapping(path = "sign-up")
     public void create(@RequestBody ProfileDTO profileDTO){
         this.authentificationService.create(profileDTO);
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PostMapping(path = "activate")
+    public void activate(@RequestBody Map<String, String> parameters){
+        this.authentificationService.activate(parameters);
     }
 }
