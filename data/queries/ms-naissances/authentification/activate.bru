@@ -1,0 +1,26 @@
+meta {
+  name: activate
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/sign-up
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "firstName": "boina",
+      "lastName": "Bka",
+      "email": "jieenezbkutler@idea.com",
+      "phone": "+1 (9847) 5810-3017",
+      "password": "naissancess"
+     
+    }
+}

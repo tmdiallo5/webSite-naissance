@@ -1,5 +1,6 @@
 package tech.chillo.ms_naissance.authentification;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,7 +36,7 @@ public class AuthentificationService {
     }
 
     public void create(ProfileDTO profileDTO){
-        Logger logger =  LoggerFactory.getLogger(AuthentificationService.class);
+       Logger logger =  LoggerFactory.getLogger(AuthentificationService.class);
         logger.info("Nouveau compte avec l'email {}", profileDTO.email());
         Profile profile = this.profileMapper.DtoToEntity(profileDTO);
 

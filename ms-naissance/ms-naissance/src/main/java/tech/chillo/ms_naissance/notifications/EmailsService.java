@@ -12,14 +12,38 @@ import tech.chillo.ms_naissance.authentification.AuthentificationService;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.List;
 import java.util.Map;
-@Slf4j
+import java.util.Objects;
+
+
 @Component
 public class EmailsService {
+    String senderEmail = "achille@mesnaissance.com";
+    String senderName  = "Achille de mes naissance.com";
+
+    private final MailpitClient mailpitClient;
+
+    public EmailsService(MailpitClient mailpitClient) {
+        this.mailpitClient = mailpitClient;
+    }
+
     public void send(Map<String, String> parameters){
         String message = this.buildMessage(parameters);
         Logger logger =  LoggerFactory.getLogger(EmailsService.class);
         logger.info("le message est {}", message);
+
+     Map<String, Object> emailsParameters = Map.of(
+                "Subject", "Votre code d'activation",
+                "HTML", message,
+                "text", message,
+                "From", Map.of("Email", senderEmail, "Name", senderName),
+                "To", List.of(Map.of("Email", parameters.get("email"), "Name", parameters.get("name")))
+
+
+        );
+     this.mailpitClient.send(emailsParameters);
+
     }
     private String buildMessage(Map<String, String> parameters)  {
         Configuration configuration = new Configuration();
