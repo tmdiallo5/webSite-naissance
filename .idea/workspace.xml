@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/security/ApplicationSecurity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/MsNaissanceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/MsNaissanceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/authentification/AuthentificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/authentification/AuthentificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/security/ApplicationSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/security/ApplicationSecurity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +43,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Maven.ms-naissance [clean,install].executor": "Run",
+    "OverrideImplement.generate.javadoc": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
