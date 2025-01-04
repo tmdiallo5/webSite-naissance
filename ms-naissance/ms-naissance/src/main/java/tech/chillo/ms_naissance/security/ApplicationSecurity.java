@@ -49,6 +49,7 @@ public class ApplicationSecurity {
         return
                 httpSecurity
                         .cors(Customizer.withDefaults())
+                        .csrf(AbstractHttpConfigurer::disable)
                         .headers(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(
                                 customizer ->

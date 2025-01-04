@@ -10,11 +10,7 @@ import tech.chillo.ms_naissance.security.RsaKeys;
 
 @EnableConfigurationProperties(RsaKeys.class)
 @SpringBootApplication(
-		exclude = {
-				SecurityAutoConfiguration.class,
-				ManagementWebSecurityAutoConfiguration.class,
 
-		}
 )
 public class MsNaissanceApplication {
 
