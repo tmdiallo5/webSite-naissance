@@ -6,10 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import tech.chillo.ms_naissance.profiles.Profile;
 import tech.chillo.ms_naissance.profiles.ProfileDTO;
 import tech.chillo.ms_naissance.profiles.ProfilesService;
+import tech.chillo.ms_naissance.security.token.JWTService;
 
 import java.util.Map;
 
@@ -20,11 +22,13 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RestController
 public class AuthentificationController {
     private final AuthenticationManager authenticationManager;
+    private final JWTService jwtService;
     private AuthentificationService authentificationService;
 
 
-    public AuthentificationController(AuthenticationManager authenticationManager, AuthentificationService authentificationService) {
+    public AuthentificationController(AuthenticationManager authenticationManager, JWTService jwtService, AuthentificationService authentificationService) {
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
         this.authentificationService = authentificationService;
     }
 
@@ -36,15 +40,18 @@ public class AuthentificationController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "sign-in")
-    public void login(@RequestBody Map<String, String> parameters){
-            this.authenticationManager.authenticate(
+    public @ResponseBody Map<String, String> login(@RequestBody Map<String, String> parameters){
+        Authentication authentication =    this.authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             parameters.get("email"),
                             parameters.get("password")
                     )
             );
-        Logger logger =  LoggerFactory.getLogger(AuthentificationController.class);
-        logger.info("{} est connecte", parameters.get("email"));
+
+        String bearer = jwtService.generate(authentication);
+        return Map.of("bearer", bearer);
+        //Logger logger =  LoggerFactory.getLogger(AuthentificationController.class);
+        // logger.info("{} est connecte", parameters.get("email"));
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)
