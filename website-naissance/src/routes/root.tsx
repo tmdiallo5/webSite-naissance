@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to={"/private/demandes"} />,
+            element: <Navigate to={"/private/declaration"} />,
           },
           {
             path: "declaration",

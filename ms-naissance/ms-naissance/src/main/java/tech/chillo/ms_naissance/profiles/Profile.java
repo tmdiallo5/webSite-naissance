@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import tech.chillo.ms_naissance.declarations.Declaration;
 import tech.chillo.ms_naissance.shared.entities.Address;
 
 import java.util.ArrayList;
@@ -27,6 +28,10 @@ public class Profile implements UserDetails {
     private String email;
     private String phone;
     private String password;
+
+    @OneToMany(mappedBy = "father")
+    List<Declaration> fatherDeclarations;
+
     private boolean active = false;
 
     /**

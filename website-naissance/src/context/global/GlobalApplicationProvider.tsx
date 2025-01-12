@@ -5,6 +5,7 @@ import { APPLICATION_STATE, FILTER_REQUESTS } from "@/utils";
 
 type StateProps = {
   title: string;
+  token?: string;
   requestsFilter?: string;
   requests: any[];
   declarations: Declarations[];
