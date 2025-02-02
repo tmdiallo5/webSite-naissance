@@ -1,6 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { create } from "@/services";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const REQUIRED_FIELD = "Ce champ est requis";
 type Credentials = {
@@ -24,8 +27,21 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Credentials> = async (data) => {};
-
+  const [display, setDisplay] = useState("FORM");
+  const onSubmit: SubmitHandler<Credentials> = async (data) => {
+    const response = await create("sign-in", data);
+    const { status } = response;
+    if (status === 201) {
+      reset();
+      setDisplay("SUCCESS");
+    }
+  };
+  if (display === "SUCCESS") {
+    <article className="bg-white text-center px-10 py-10 rounded-md shadow-md">
+      <h1 className="text-3xl mb-6">Vous etes connectes</h1>
+      <Navigate to={"/private/declaration"} />
+    </article>;
+  }
   return (
     <div className="flex flex-col justify-between md:justify-center">
       <h1 className="p-4 font-bold text-4xl text-center text-blue-800 md:hidden">
