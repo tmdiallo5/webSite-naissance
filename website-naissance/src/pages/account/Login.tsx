@@ -28,9 +28,12 @@ function Login() {
   });
 
   const [display, setDisplay] = useState("FORM");
-  const onSubmit: SubmitHandler<Credentials> = async (data) => {
-    const response = await create("sign-in", data);
+  const onSubmit: SubmitHandler<Credentials> = async (Credentials) => {
+    const response = await create("sign-in", Credentials);
     const { status } = response;
+    const { bearer } = await response.json();
+    console.log({ bearer });
+
     if (status === 201) {
       reset();
       setDisplay("SUCCESS");
