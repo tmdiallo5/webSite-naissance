@@ -10,7 +10,7 @@ function PrivateLayout() {
   return (
     <>
       {token ? (
-        <section className=" min-h-screen">
+        <section>
           <Nav />
           <main className="wrapper pl-64 pr-10">
             <header className="flex justify-between my-3 text-2xl font-bold">

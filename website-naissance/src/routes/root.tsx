@@ -9,6 +9,8 @@ import DeclarationEdit from "@/pages/DeclarationEdit";
 import { action as destroyAction } from "./destroy";
 import Requests from "@/pages/requests/Requests";
 import RequestEdit from "@/pages/requests/RequestEdit";
+import PublicLayout from "./PublicLayout";
+import Login from "@/pages/account/Login";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: "/",
+        element: <PublicLayout />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to={"/connexion"} />,
+          },
+          {
+            path: "/connexion",
+            element: <Login />,
+          },
+        ],
       },
       {
         path: "private",

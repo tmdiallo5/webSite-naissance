@@ -1,3 +1,4 @@
+import Banner from "@/components/shared/Banner";
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationProvider";
 import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
@@ -11,7 +12,8 @@ function PublicLayout() {
       {token ? (
         <Navigate to={"/private/declaration"} />
       ) : (
-        <section className=" min-h-screen">
+        <section className=" min-h-screen grid md:grid-cols-2">
+          <Banner />
           <Outlet />
         </section>
       )}
