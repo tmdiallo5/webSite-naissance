@@ -2,8 +2,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { create } from "@/services";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 
 const REQUIRED_FIELD = "Ce champ est requis";
 type Credentials = {
@@ -18,6 +19,7 @@ const schema = yup
   .required();
 
 function Login() {
+  const { setToken } = useContext(GlobalApplicationContext);
   const {
     register,
     handleSubmit,
@@ -35,6 +37,7 @@ function Login() {
     console.log({ bearer });
 
     if (status === 201) {
+      setToken({ token: bearer });
       reset();
       setDisplay("SUCCESS");
     }

@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import Nav from "@/components/nav/Nav";
 import { useContext } from "react";
-import { GlobalApplicationContext } from "@/context/global/GlobalApplicationProvider";
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 
 function PrivateLayout() {
   const {

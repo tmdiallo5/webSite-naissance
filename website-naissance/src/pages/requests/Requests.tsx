@@ -1,7 +1,7 @@
 import ActionButton from "@/components/shared/ActionButton";
 import PageFilter from "@/components/shared/PageFilter";
 import StatusBadge from "@/components/shared/StatusBadge";
-import { GlobalApplicationContext } from "@/context/global/GlobalApplicationProvider";
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 import { search } from "@/services";
 import { formatDate } from "@/utils";
 import React, { useContext, useEffect, useState } from "react";

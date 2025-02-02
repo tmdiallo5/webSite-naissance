@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import ApplicationContextProvider from "./context/ApplicationContextProvider";
-import GlobalApplicationProvider from "./context/global/GlobalApplicationProvider";
+import GlobalApplicationProvider from "./context/global/GlobalApplicationContextProvider";
 
 function App() {
   return (

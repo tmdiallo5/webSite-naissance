@@ -1,5 +1,5 @@
 import { ApplicationContext } from "@/context/ApplicationContextProvider";
-import { GlobalApplicationContext } from "@/context/global/GlobalApplicationProvider";
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 import Declaration from "@/pages/Declaration";
 import { search } from "@/services";
 import { Declarations } from "@/types/Declarations";
