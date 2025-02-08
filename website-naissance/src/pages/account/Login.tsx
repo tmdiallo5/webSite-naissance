@@ -5,6 +5,7 @@ import { create } from "@/services";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
+import { useMutation } from "@tanstack/react-query";
 
 const REQUIRED_FIELD = "Ce champ est requis";
 type Credentials = {
@@ -29,18 +30,19 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
+  // Mutations
+  const mutation = useMutation({
+    mutationFn: (credentials: Credentials) => create("sign-in", credentials),
+    onSuccess: async (response: Response) => {
+      const { bearer: token } = await response.json();
+      setToken({ token });
+      reset();
+    },
+  });
+
   const [display, setDisplay] = useState("FORM");
   const onSubmit: SubmitHandler<Credentials> = async (Credentials) => {
-    const response = await create("sign-in", Credentials);
-    const { status } = response;
-    const { bearer } = await response.json();
-    console.log({ bearer });
-
-    if (status === 201) {
-      setToken({ token: bearer });
-      reset();
-      setDisplay("SUCCESS");
-    }
+    mutation.mutate(Credentials);
   };
   if (display === "SUCCESS") {
     <article className="bg-white text-center px-10 py-10 rounded-md shadow-md">
