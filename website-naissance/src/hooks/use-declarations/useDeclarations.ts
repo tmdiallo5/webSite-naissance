@@ -3,12 +3,16 @@ import { GlobalApplicationContext } from "@/context/global/GlobalApplicationCont
 import Declaration from "@/pages/Declaration";
 import { search } from "@/services";
 import { Declarations } from "@/types/Declarations";
+import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
 
 function useDeclarations () {
 
-    const {updateTitle} = useContext(GlobalApplicationContext);
-
+    const {updateTitle, state: {token}} = useContext(GlobalApplicationContext);
+    const {data: {status}, error} = useQuery({ queryKey: ['declarations'], queryFn: () => search({path:"declarations", token}) })
+    console.log('====================================');
+    console.log(status, error);
+    console.log('====================================');
     const {state, updateDeclarations, updateDeclarationStatus} = useContext(ApplicationContext);
 
     const filtRef = useRef<any>()
@@ -86,15 +90,15 @@ function useDeclarations () {
         
      }
 
-    const getDeclaration = async () => {
-        const data = await search('declarations')
+  /*  const getDeclaration = async () => {
+        const data = await search("declarations")
         setDeclaration(data);
         updateDeclarations(data);
       };
-    
+   */
       useEffect(() => {
         updateTitle({"title": "Déclaration"}); 
-        getDeclaration();
+       // getDeclaration();
       }, []);
 
       return {declarations, state, updateStatus, sortByStatus, sortByDate, filtRef, filterDeclarations, filteredDeclaration};
