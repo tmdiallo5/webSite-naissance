@@ -1,4 +1,4 @@
-import { ApplicationContext } from "@/context/ApplicationContextProvider";
+
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 import Declaration from "@/pages/Declaration";
 import { search } from "@/services";
@@ -9,18 +9,19 @@ import { useContext, useEffect, useRef, useState } from "react";
 function useDeclarations () {
 
     const {updateTitle, state: {token}} = useContext(GlobalApplicationContext);
-    const {data: {status}, error} = useQuery({ queryKey: ['declarations'], queryFn: () => search({path:"declarations", token}) })
-    console.log('====================================');
-    console.log(status, error);
-    console.log('====================================');
-    const {state, updateDeclarations, updateDeclarationStatus} = useContext(ApplicationContext);
+   const {data} = useQuery({ 
+      queryKey: ['declarations'], 
+      queryFn: () => search({path:"declarations", token}),
+     });
+   
+    const {state, updateDeclarations} = useContext(GlobalApplicationContext);
 
     const filtRef = useRef<any>()
     const [statusOrder, setStatusOrder] = useState(1);
     const [dateOrder, setDateOrder] = useState(1);
     const [declarations, setDeclaration] = useState<Declarations[]>([]);
     const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>(state.declarations);
-
+/*
     const updateStatusWithoutContext = (data: { id: string; status: string }) => {
       const toUpdate = declarations.filter(
         ({ id }: Declarations) => id === data.id
@@ -31,8 +32,8 @@ function useDeclarations () {
       const updated = { ...toUpdate, status: data.status };
       setDeclaration([...tokeep, updated]);
     };
-
-    const updateStatus = (data: { id: string; status: string }) => updateDeclarationStatus(data);
+*/
+    const updateStatus = (data: { id: string; status: string }) => {};
    
 
       const sortByStatus = () => {
@@ -98,8 +99,10 @@ function useDeclarations () {
    */
       useEffect(() => {
         updateTitle({"title": "Déclaration"}); 
+        setDeclaration(data);
+        updateDeclarations(data);
        // getDeclaration();
-      }, []);
+      }, [data]);
 
       return {declarations, state, updateStatus, sortByStatus, sortByDate, filtRef, filterDeclarations, filteredDeclaration};
 }

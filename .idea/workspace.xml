@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="546b0fbe-0efe-49c9-9774-9a3db85e83e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/website-naissance/src/hooks/use-declarations/useDeclarations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website-naissance/src/hooks/use-declarations/useDeclarations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website-naissance/src/pages/account/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/website-naissance/src/pages/account/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website-naissance/src/services/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website-naissance/src/services/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.MsNaissanceApplication.executor": "Run",
+    "Spring Boot.MsNaissanceApplication.executor": "Debug",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
@@ -248,6 +246,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ms-naissance/ms-naissance/src/main/java/tech/chillo/ms_naissance/declarations/DeclarationController.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,5 +1,5 @@
 import { Declarations } from "@/types/Declarations";
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
 import {
   APPLICATION_STATE,
@@ -9,6 +9,7 @@ import {
   UPDATE_TITLE,
   SET_TOKEN,
   DELETE_TOKEN,
+  UPDATE_DECLARATIONS,
 } from "@/utils";
 
 type StateProps = {
@@ -27,6 +28,7 @@ type Props = {
   filterRequests: (data: any) => void;
   setToken: (data: any) => void;
   deleteToken: () => void;
+  updateDeclarations: (data: any) => void;
 };
 
 export const GlobalApplicationContext = createContext<Props>({} as Props);
@@ -73,6 +75,15 @@ function GlobalApplicationProvider({ children }: any) {
     dispatch({ type: FILTER_REQUESTS, data });
   };
 
+  const updateDeclarations = (declarations: Declarations[]) => {
+    dispatch({ type: UPDATE_DECLARATIONS, data: declarations });
+    // setState((current) => ({ ...current, declarations }));
+  };
+
+  useEffect(() => {
+    dispatch({});
+  }, []);
+
   return (
     <GlobalApplicationContext.Provider
       value={{
@@ -83,6 +94,7 @@ function GlobalApplicationProvider({ children }: any) {
         setRequests,
         updateRequestStatus,
         filterRequests,
+        updateDeclarations,
       }}
     >
       {children}
