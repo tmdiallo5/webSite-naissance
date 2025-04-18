@@ -11,12 +11,28 @@ type Props = {
 };
 
 function DeclarationsItem({ declaration: item, index, action }: any) {
+  const getLastStatus = (declaration: any) => {
+    const status = declaration.status.sort(
+      ({ registered }: { registered: Date }) => registered
+    )[0];
+    const {
+      status: { name },
+    } = status;
+    return name;
+  };
   const getDate = (declaration: any) => {
-    const status = declaration.status.map((item: any) => {
+    const status = declaration.status.filter((item: any) => {
       const { status } = item;
-      status == "new";
+      status == "NEW";
     })[0];
     return status ? status.registered : null;
+
+    /*  const status = declaration.status.map((item: any) => {
+      const { status } = item;
+      status == "NEW";
+    })[0];
+    return status ? status.registered : null;*/
+    return null;
   };
 
   return (
@@ -26,13 +42,13 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
         index % 2 === 0 ? "bg-gray-100" : null
       }`}
     >
-      <span className={` p-2`}>{formatDate(getDate(item.registered))}</span>
+      <span className={` p-2`}>{formatDate(getDate(item))}</span>
       <span className={` p-2 col-span-2 flex flex-col`}>
         <span>{item.child.firstName}</span>
         <span className="uppercase">{item.child.lastName}</span>
       </span>
       <span className={` p-2`}>
-        {item?.child?.birthDate ? formatDate(item.child.birthDate) : null}
+        {item?.child?.birthDate ? formatDate(item.child.birthDate) : "N/A"}
       </span>
       <span className={` p-2`}>
         <span>{item.company.name}</span>
@@ -45,7 +61,7 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
         <span>{item.secondParent.firstName}</span>
         <span className="uppercase">{item.secondParent.lastName}</span>
       </span>
-      <StatusBadge status={item.status} />
+      <StatusBadge status={getLastStatus(item)} />
       <ActionButton
         classes="p-2 col-span-2 "
         action={action}

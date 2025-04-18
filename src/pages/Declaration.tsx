@@ -16,7 +16,7 @@ function Declaration() {
     filteredDeclaration,
   } = useDeclarations();
   console.log("====================================");
-  console.log(state);
+  console.log({ declarations });
   console.log("====================================");
 
   return (
@@ -41,9 +41,7 @@ function Declaration() {
       <div className=" border-4  bg-white shadow-md rounded-md">
         <DeclarationsItems
           declarations={
-            filteredDeclaration.length
-              ? filteredDeclaration
-              : state?.declarations
+            filteredDeclaration.length ? filteredDeclaration : declarations
           }
           updateStatus={updateStatus}
           sortByStatus={sortByStatus}
