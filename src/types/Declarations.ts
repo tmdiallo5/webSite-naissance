@@ -1,0 +1,16 @@
+import { Child } from "./Child"
+import { Company } from "./Company"
+import { Profile } from "./Profile"
+
+export type Declarations = {
+    id?: string|number,
+    pictur?: string,
+    comment?: string,
+    status:string,
+    registered: string,
+    company: Company,
+    child: Child,
+    firstParent: Profile,
+    secondParent: Profile,
+
+}
