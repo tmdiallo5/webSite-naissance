@@ -1,0 +1,29 @@
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
+import { search } from "@/services";
+import { useQueries, useQuery } from "@tanstack/react-query";
+import { useContext, useEffect } from "react";
+
+export default function Header() {
+  const {
+    state: { title, token },
+  } = useContext(GlobalApplicationContext);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["user-profile"],
+    queryFn: () => search({ path: "profiles/read", token }),
+    retry: 2,
+  });
+
+  if (isLoading) {
+    <header className="flex justify-between my-3 text-2xl font-bold">
+      <h3>{title}</h3>
+    </header>;
+  }
+
+  return (
+    <header className="flex justify-between my-3 text-2xl font-bold">
+      <h3>{title}</h3>
+      <span>{data?.firstName}</span>
+    </header>
+  );
+}
