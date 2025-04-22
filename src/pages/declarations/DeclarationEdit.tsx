@@ -1,11 +1,13 @@
 import { Profile } from "@/types/Profile";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Declarations } from "@/types/Declarations";
 import { create } from "@/services";
 import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 
 const REQUIRED_FIELD = "Ce champ est requis";
 const schema = yup
@@ -28,13 +30,7 @@ const schema = yup
       birthDate: yup.string().required(REQUIRED_FIELD),
       birthTime: yup.string().required(REQUIRED_FIELD),
     }),
-    firstParent: yup.object({
-      gender: yup.string().required(REQUIRED_FIELD),
-      firstName: yup.string().required(REQUIRED_FIELD),
-      lastName: yup.string().required(REQUIRED_FIELD),
-      email: yup.string().required(REQUIRED_FIELD),
-      phone: yup.string().required(REQUIRED_FIELD),
-    }),
+
     secondParent: yup.object({
       gender: yup.string().required(REQUIRED_FIELD),
       firstName: yup.string().required(REQUIRED_FIELD),
@@ -54,19 +50,25 @@ function DeclarationEdit() {
   } = useForm<Declarations>({
     resolver: yupResolver(schema),
   });
-  const [display, setDisplay] = useState("FORM");
-  const onSubmit: SubmitHandler<Declarations> = async (data) => {
-    const response = await create("declarations", data);
-    const { status } = response;
-    if (status === 201) {
+
+  const {
+    state: { token },
+  } = useContext(GlobalApplicationContext);
+  const mutation = useMutation({
+    mutationFn: (declaration: Declarations) =>
+      create({ token, url: "declarations", body: declaration }),
+    onSuccess: () => {
       reset();
-      setDisplay("SUCCESS");
-    }
+    },
+  });
+
+  const onSubmit: SubmitHandler<Declarations> = async (data) => {
+    mutation.mutate(data);
   };
 
   return (
     <article className=" border-4  bg-white shadow-md rounded-md w-1/2 mx-auto p-4">
-      {display === "FORM" ? (
+      {mutation.isIdle ? (
         <>
           <h1 className="mb-3 text-xl font-bold">Déclarer une naissance</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -127,76 +129,6 @@ function DeclarationEdit() {
               </div>
               <p className="text-red-600">{errors.child?.birthDate?.message}</p>
               <p className="text-red-600">{errors.child?.birthTime?.message}</p>
-            </div>
-
-            {/*Parent 1*/}
-            <h3 className="border-b  border-gray-900 mt-5">
-              Information sur le premier parent
-            </h3>
-            <div className="form-field">
-              <label htmlFor="firstParent-firstname">Civilité</label>
-              <select
-                {...register("firstParent.gender")}
-                id="firstParent-gender"
-              >
-                <option value="">Sélectionner</option>
-                <option value="MR">Monsieur</option>
-                <option value="MS">Madame</option>
-                <option value="MRS">Mademoiselle</option>
-              </select>
-
-              <p className="text-red-600">
-                {errors.firstParent?.gender?.message}
-              </p>
-            </div>
-            <div className="form-field">
-              <label htmlFor="firstParent-firstname">Prénom</label>
-              <input
-                type="text"
-                id="firstParent-firstname"
-                placeholder="Prénom du premier parent"
-                {...register("firstParent.firstName")}
-              />
-
-              <p className="text-red-600">
-                {errors.firstParent?.firstName?.message}
-              </p>
-            </div>
-            <div className="form-field">
-              <label htmlFor="firstParent-lastName">Nom</label>
-              <input
-                type="text"
-                id="firstParent-firstname"
-                placeholder="Nom du premier parent"
-                {...register("firstParent.lastName")}
-              />
-              <p className="text-red-600">
-                {errors.firstParent?.lastName?.message}
-              </p>
-            </div>
-            <div className="form-field">
-              <label htmlFor="firstParent-lastName">Email</label>
-              <input
-                type="emailt"
-                id="firstParent-email"
-                placeholder="Email du premier parent"
-                {...register("firstParent.email")}
-              />
-              <p className="text-red-600">
-                {errors.firstParent?.email?.message}
-              </p>
-            </div>
-            <div className="form-field">
-              <label htmlFor="firstParent-phone">Phone</label>
-              <input
-                type="tel"
-                id="firstParent-email"
-                placeholder="Telephone du premier parent"
-                {...register("firstParent.phone")}
-              />
-              <p className="text-red-600">
-                {errors.firstParent?.phone?.message}
-              </p>
             </div>
 
             {/*Parent 2*/}
@@ -314,7 +246,7 @@ function DeclarationEdit() {
         </>
       ) : null}
 
-      {display === "SUCCESS" ? (
+      {mutation.isSuccess ? (
         <article className="bg-white text-center px-10 py-10 rounded-md shadow-md">
           <h1 className="text-3xl mb-6">
             Votre naissance a bien ete enregistre

@@ -10,7 +10,7 @@ export type Declarations = {
     registered: string,
     company: Company,
     child: Child,
-    firstParent: Profile,
+    firstParent?: Profile,
     secondParent: Profile,
 
 }

@@ -2,9 +2,9 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "@/App";
 import ErrorPage from "@/error-page";
 import PrivateLayout from "@/layouts/PrivateLayout";
-import Declaration from "@/pages/Declaration";
+import Declaration from "@/pages/declarations/Declaration";
 import Home from "@/pages/Home";
-import DeclarationEdit from "@/pages/DeclarationEdit";
+import DeclarationEdit from "@/pages/declarations/DeclarationEdit";
 
 import { action as destroyAction } from "./destroy";
 import Requests from "@/pages/requests/Requests";

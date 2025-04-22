@@ -1,6 +1,6 @@
 
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
-import Declaration from "@/pages/Declaration";
+import Declaration from "@/pages/declarations/Declaration";
 import { search } from "@/services";
 import { Declarations } from "@/types/Declarations";
 import { useQuery } from "@tanstack/react-query";
