@@ -7,9 +7,10 @@ const getStatusColor = (status: string) => {
         case "VALIDATED":
             return "bg-green-100 text-green-600 text-center";
         case "REJECTED":
-            return "bg-red-100 text-red-600 text-center";               
+            return "bg-red-100 text-red-600 text-center";
+        case "DELETE":
+                return "bg-red-100 text-red-600 text-center";                    
             
-            break;
     
         default:
             return "";
@@ -25,14 +26,20 @@ const getStatusLabel = (status: string) => {
         case "VALIDATED":
             return "Validé";
         case "REJECTED":
-            return "Rejeté";               
+            return "Rejeté";   
+        case "DELETE":
+                return "Supprimer";               
             
-            break;
+
     
         default:
             return "";
     }
 }
-const STATUS = ["NEW", "ON_GOING", "VALIDATED", "REJECTED"];
+const STATUS = {
+    "AGENT": ["NEW", "ON_GOING", "VALIDATED", "REJECTED"],
+    "PUBLIC": ["NEW", "DELETE"],
+    "ADMINISTRATOR": ["NEW", "DELETE"],
+};
 
 export {STATUS, getStatusColor, getStatusLabel}

@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 export default function Header() {
   const {
     state: { title, token },
+    setCurrentUser,
   } = useContext(GlobalApplicationContext);
 
   const { data, isLoading } = useQuery({
@@ -13,6 +14,10 @@ export default function Header() {
     queryFn: () => search({ path: "profiles/read", token }),
     retry: 2,
   });
+
+  useEffect(() => {
+    setCurrentUser(data);
+  }, [data]);
 
   if (isLoading) {
     <header className="flex justify-between my-3 text-2xl font-bold">

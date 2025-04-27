@@ -57,8 +57,8 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
         <span>{item.company.name}</span>
       </span>
       <span className={` p-2 col-span-2 flex flex-col`}>
-        <span>{item.firstParent.firstName}</span>
-        <span className="uppercase">{item.firstParent.lastName}</span>
+        <span>{item.firstParent ? item?.firstParent.firstName : ""}</span>
+        <span className="uppercase">{item.firstParent ? item?.firstParent.lastName : ""}</span>
       </span>
       <span className={` p-2 col-span-2 flex flex-col`}>
         <span>{item.secondParent.firstName}</span>

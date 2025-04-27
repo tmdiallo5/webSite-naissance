@@ -7,6 +7,7 @@ import {
   FILTER_REQUESTS,
   INITIAL_STATE,
   LOGOUT,
+  SET_CURRENT_USER,
   SET_REQUESTS,
   SET_REQUESTS_STATUS,
   SET_TOKEN,
@@ -27,6 +28,11 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
 
     case SET_TOKEN:
       state = { ...state, token: data.token };
+      break;
+
+    case SET_CURRENT_USER:
+      const { role } = data || {};
+      state = { ...state, user: { role } };
       break;
 
     case DELETE_TOKEN:

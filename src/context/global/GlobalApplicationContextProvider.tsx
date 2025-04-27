@@ -11,11 +11,17 @@ import {
   DELETE_TOKEN,
   UPDATE_DECLARATIONS,
   LOGOUT,
+  SET_CURRENT_USER,
 } from "@/utils";
+
+type User = {
+  role: string;
+};
 
 type StateProps = {
   title: string;
   token?: string;
+  user?: User;
   requestsFilter?: string;
   requests: any[];
   declarations: Declarations[];
@@ -28,6 +34,7 @@ type Props = {
   updateRequestStatus: (data: any) => void;
   filterRequests: (data: any) => void;
   setToken: (data: any) => void;
+  setCurrentUser: (data: any) => void;
   deleteToken: () => void;
   updateDeclarations: (data: any) => void;
   logout: () => void;
@@ -51,6 +58,9 @@ function GlobalApplicationProvider({ children }: any) {
 
   const setToken = (data: any) => {
     dispatch({ type: SET_TOKEN, data });
+  };
+  const setCurrentUser = (data: any) => {
+    dispatch({ type: SET_CURRENT_USER, data });
   };
   const deleteToken = () => {
     dispatch({ type: DELETE_TOKEN });
@@ -101,6 +111,7 @@ function GlobalApplicationProvider({ children }: any) {
         filterRequests,
         updateDeclarations,
         logout,
+        setCurrentUser,
       }}
     >
       {children}

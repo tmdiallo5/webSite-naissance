@@ -1,6 +1,6 @@
+import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 import { getStatusLabel, STATUS } from "@/utils";
-import React from "react";
-import { ImInsertTemplate } from "react-icons/im";
+import React, { useContext } from "react";
 
 type Props = {
   id: string;
@@ -10,6 +10,9 @@ type Props = {
 };
 
 function ActionButton({ id, classes, action }: Props) {
+  const {
+    state: { user: { role = "" } = {} },
+  } = useContext(GlobalApplicationContext);
   return (
     <div className={`${classes}`}>
       <select
@@ -19,11 +22,13 @@ function ActionButton({ id, classes, action }: Props) {
         }}
       >
         <option value="">Sélectionner</option>
-        {STATUS.map((item: string) => (
-          <option key={`${id}-${item}`} value={item}>
-            {getStatusLabel(item)}
-          </option>
-        ))}
+        {STATUS[role as "PUBLIC" | "AGENT" | "ADMINISTRATOR"].map(
+          (item: string) => (
+            <option key={`${id}-${item}`} value={item}>
+              {getStatusLabel(item)}
+            </option>
+          )
+        )}
       </select>
     </div>
   );
