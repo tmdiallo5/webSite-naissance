@@ -10,6 +10,7 @@ import {
   SET_TOKEN,
   DELETE_TOKEN,
   UPDATE_DECLARATIONS,
+  LOGOUT,
 } from "@/utils";
 
 type StateProps = {
@@ -29,6 +30,7 @@ type Props = {
   setToken: (data: any) => void;
   deleteToken: () => void;
   updateDeclarations: (data: any) => void;
+  logout: () => void;
 };
 
 export const GlobalApplicationContext = createContext<Props>({} as Props);
@@ -43,6 +45,9 @@ function GlobalApplicationProvider({ children }: any) {
     GlobalApplicationReducer,
     APPLICATION_STATE
   );
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+  };
 
   const setToken = (data: any) => {
     dispatch({ type: SET_TOKEN, data });
@@ -95,6 +100,7 @@ function GlobalApplicationProvider({ children }: any) {
         updateRequestStatus,
         filterRequests,
         updateDeclarations,
+        logout,
       }}
     >
       {children}

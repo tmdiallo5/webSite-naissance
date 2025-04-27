@@ -5,6 +5,8 @@ import {
   APPLICATION_STATE_KEY,
   DELETE_TOKEN,
   FILTER_REQUESTS,
+  INITIAL_STATE,
+  LOGOUT,
   SET_REQUESTS,
   SET_REQUESTS_STATUS,
   SET_TOKEN,
@@ -55,6 +57,10 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
 
     case FILTER_REQUESTS:
       state = { ...state, requestsFilter: data };
+      break;
+
+    case LOGOUT:
+      state = INITIAL_STATE;
       break;
   }
   sessionStorage.setItem(APPLICATION_STATE_KEY, JSON.stringify(state));
