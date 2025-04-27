@@ -1,11 +1,12 @@
-
+import axios from "axios";
+import { json } from "react-router-dom";
 type Params = {
    path: string;
    token?: string;
  };
  
  const search = async ({ path, token }: Params) => {
-   const response = await fetch(
+   const response = await axios.get(
      `/api/${path}`,
      {
        headers: {
@@ -15,23 +16,33 @@ type Params = {
      }
    );
  
-   const data = await response.json();
+   const {data} =  response;
    return data;
  };
  
 
 const create = async ({url, token, body}:  any) => {
-  const response = await  fetch(
-      `/api/${url}`,
-     
-      {
-         headers:{'accept': 'application/json', 'content-type': 'application/json', 'Authorization': `Bearer ${token}` },
-         body: JSON.stringify(body),
-         method: 'POST'
-      }
+  return await  axios({
+    method: 'POST',
+    url: `/api/${url}`,
+    data: JSON.stringify(body),
+    headers:{
+      'accept': 'application/json', 
+      'content-type': 'application/json', 
+      ...(token ? {'Authorization': `Bearer ${token}`}: {})
+     },
 
-   )
-   return response;
+  }
+)
 }
+      
+     
+      
+        
+        // body: JSON.stringify(body),
+      
+
+   
+   
 
 export {search, create};

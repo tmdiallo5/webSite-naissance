@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Declarations } from "@/types/Declarations";
 import { create } from "@/services";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 
@@ -18,10 +18,15 @@ const schema = yup
     registered: yup
       .string()
       .required(REQUIRED_FIELD)
-      .default(`${new Date().toLocaleString()}`),
+      .default(`${new Date().toISOString()}`),
     company: yup.object({
       name: yup.string().required(REQUIRED_FIELD),
-      adress: yup.string().required(REQUIRED_FIELD),
+      address: yup.object({
+        street: yup.string().required(REQUIRED_FIELD),
+        zip: yup.string().required(REQUIRED_FIELD),
+        city: yup.string().required(REQUIRED_FIELD),
+        //  country: yup.string().required(REQUIRED_FIELD),
+      }),
     }),
     child: yup.object({
       gender: yup.string().required(REQUIRED_FIELD),
@@ -42,6 +47,7 @@ const schema = yup
   .required();
 
 function DeclarationEdit() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -59,16 +65,36 @@ function DeclarationEdit() {
       create({ token, url: "declarations", body: declaration }),
     onSuccess: () => {
       reset();
+      // navigate("/private/declaration");
     },
   });
 
-  const onSubmit: SubmitHandler<Declarations> = async (data) => {
-    mutation.mutate(data);
+  const onSubmit: SubmitHandler<Declarations> = async (declaration) => {
+    const {
+      child: { birthDate, birthTime },
+    } = declaration;
+    const finalBirthDate = new Date(birthDate);
+    //const finalBirthDate = new Date(`${birthDate}T${birthTime}`);
+    finalBirthDate.setHours(Number(birthTime.split(":")[0]));
+    finalBirthDate.setMinutes(Number(birthTime.split(":")[1]));
+
+    const finalDeclaration = {
+      ...declaration,
+      child: {
+        ...declaration.child,
+        birthDate: finalBirthDate.toISOString(),
+        // birthDate: finalBirthDate.toISOString().replace("Z", ""),
+      },
+    };
+
+    mutation.mutate(finalDeclaration);
   };
+
+  //  {mutation.isIdle || mutation.error ? (
 
   return (
     <article className=" border-4  bg-white shadow-md rounded-md w-1/2 mx-auto p-4">
-      {mutation.isIdle ? (
+      {mutation.isIdle || mutation.error ? (
         <>
           <h1 className="mb-3 text-xl font-bold">Déclarer une naissance</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -109,13 +135,13 @@ function DeclarationEdit() {
               <p className="text-red-600">{errors.child?.lastName?.message}</p>
             </div>
             <div className="form-field">
-              <label htmlFor="child-firstname">
+              <label htmlFor="child-birthDate">
                 Date de naissance et heure de naissance
               </label>
               <div className="flex justify-between items-center gap-2">
                 <input
                   type="date"
-                  id="child-birthday"
+                  id="child-birthDate"
                   placeholder="Date de naissance"
                   {...register("child.birthDate")}
                 />
@@ -218,17 +244,48 @@ function DeclarationEdit() {
               <p className="text-red-600">{errors.company?.name?.message}</p>
             </div>
             <div className="form-field">
-              <label htmlFor="company-adresse">
+              <label htmlFor="company-address">
                 Adresse de l'établissement
               </label>
-              <input
-                type="text"
-                id="company-adresse"
-                placeholder="Adresse de l'établissement"
-                {...register("company.adress")}
-              />
-              <p className="text-red-600">{errors.company?.adress?.message}</p>
+              <div aria-braillelabel="company-address">
+                <label htmlFor="company-street">Rue</label>
+                <input
+                  type="text"
+                  id="company-street"
+                  placeholder="Adresse de l'établissement"
+                  {...register("company.address.street")}
+                />
+                <p className="text-red-600">
+                  {errors.company?.address?.street?.message}
+                </p>
+
+                <div className="form-field">
+                  <label htmlFor="company-zip-city">Code postal et ville</label>
+                  <div className="flex justify-between items-center gap-2">
+                    <input
+                      type="text"
+                      id="company-zip-city"
+                      placeholder="Code postal"
+                      {...register("company.address.zip")}
+                    />
+
+                    <input
+                      type="text"
+                      id="child-birthday"
+                      placeholder="Ville"
+                      {...register("company.address.city")}
+                    />
+                  </div>
+                  <p className="text-red-600">
+                    {errors.company?.address?.zip?.message}
+                  </p>
+                  <p className="text-red-600">
+                    {errors.company?.address?.city?.message}
+                  </p>
+                </div>
+              </div>
             </div>
+
             <div className="form-field">
               <label htmlFor="comment">
                 Avez-vous des informations complémentaire à nous transmettre

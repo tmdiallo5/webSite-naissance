@@ -12,21 +12,24 @@ type Props = {
 
 function DeclarationsItem({ declaration: item, index, action }: any) {
   const getLastStatus = (declaration: any) => {
-    const status = declaration.status.sort(
-      ({ registered }: { registered: Date }) => registered
-    )[0];
-    const {
-      status: { name },
-    } = status;
-    return name;
+    if (declaration.status) {
+      const status = declaration.status.sort(
+        ({ registered }: { registered: Date }) => registered
+      )[0];
+      const {
+        status: { name },
+      } = status;
+      return name;
+    }
   };
   const getDate = (declaration: any) => {
-    const status = declaration.status.filter((item: any) => {
-      const { status } = item;
-      status == "NEW";
-    })[0];
-    return status ? status.registered : null;
-
+    if (declaration.status) {
+      const status = declaration.status.filter((item: any) => {
+        const { status } = item;
+        status == "NEW";
+      })[0];
+      return status ? status.registered : null;
+    }
     /*  const status = declaration.status.map((item: any) => {
       const { status } = item;
       status == "NEW";
