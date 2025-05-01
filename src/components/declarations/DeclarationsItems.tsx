@@ -52,7 +52,7 @@ function DeclarationsItems(props: Props) {
               action={updateStatus}
               declaration={item}
               index={index}
-              key={item.id}
+              key={`${item.id}-${index}`}
             />
           ))}
         </>

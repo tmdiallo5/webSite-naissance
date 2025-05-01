@@ -1,18 +1,24 @@
 
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 import Declaration from "@/pages/declarations/Declaration";
-import { search } from "@/services";
+import { partialUpdate, search } from "@/services";
 import { Declarations } from "@/types/Declarations";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
+import { BiBody } from "react-icons/bi";
 
 function useDeclarations () {
 
     const {updateTitle, state: {token}} = useContext(GlobalApplicationContext);
-   const {data} = useQuery({ 
+   const {data} = useQuery ({ 
       queryKey: ['declarations'], 
       queryFn: () => search({path:"declarations", token}),
       retry:2
+     });
+
+    const partialUpdateMutation = useMutation({ 
+      mutationFn: ({path, data}: any) => partialUpdate({path, token, body: data})
+ 
      });
    
     const {state, updateDeclarations} = useContext(GlobalApplicationContext);
@@ -20,8 +26,10 @@ function useDeclarations () {
     const filtRef = useRef<any>()
     const [statusOrder, setStatusOrder] = useState(1);
     const [dateOrder, setDateOrder] = useState(1);
-    const [declarations, setDeclaration] = useState<Declarations[]>([]);
-    const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>(state.declarations);
+    const [declarations, setDeclaration] = useState<Declarations[]>(state.declarations);
+    
+
+    const [filteredDeclaration, setfilteredDeclaration] = useState<Declarations[]>([]);
 /*
     const updateStatusWithoutContext = (data: { id: string; status: string }) => {
       const toUpdate = declarations.filter(
@@ -34,7 +42,9 @@ function useDeclarations () {
       setDeclaration([...tokeep, updated]);
     };
 */
-    const updateStatus = (data: { id: string; status: string }) => {};
+    const updateStatus = (data: { id: string; status: string }) => {
+      partialUpdateMutation.mutate({path: `declarations/${data.id}`, data});
+    };
    
 
       const sortByStatus = () => {
@@ -99,9 +109,11 @@ function useDeclarations () {
       };
    */
       useEffect(() => {
+        
+          setDeclaration(data);
+          updateDeclarations(data);
         updateTitle({"title": "Déclaration"}); 
-        setDeclaration(data);
-        updateDeclarations(data);
+       
        // getDeclaration();
       }, [data]);
 

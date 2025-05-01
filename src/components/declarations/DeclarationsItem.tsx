@@ -23,19 +23,22 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
     }
   };
   const getDate = (declaration: any) => {
-    if (declaration.status) {
-      const status = declaration.status.filter((item: any) => {
-        const { status } = item;
-        status == "NEW";
+    if (declaration.statuses) {
+      const status = declaration.statuses.filter((item: any) => {
+        const {
+          status: { name },
+        } = item;
+        return name.toUpperCase() === "NEW";
+        // status === "NEW";
       })[0];
       return status ? status.registered : null;
     }
+    return null;
     /*  const status = declaration.status.map((item: any) => {
       const { status } = item;
       status == "NEW";
     })[0];
     return status ? status.registered : null;*/
-    return null;
   };
 
   return (
@@ -58,7 +61,9 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
       </span>
       <span className={` p-2 col-span-2 flex flex-col`}>
         <span>{item.firstParent ? item?.firstParent.firstName : ""}</span>
-        <span className="uppercase">{item.firstParent ? item?.firstParent.lastName : ""}</span>
+        <span className="uppercase">
+          {item.firstParent ? item?.firstParent.lastName : ""}
+        </span>
       </span>
       <span className={` p-2 col-span-2 flex flex-col`}>
         <span>{item.secondParent.firstName}</span>

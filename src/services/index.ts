@@ -25,7 +25,25 @@ const create = async ({url, token, body}:  any) => {
   return await  axios({
     method: 'POST',
     url: `/api/${url}`,
-    data: JSON.stringify(body),
+    data: body,
+    //data: JSON.stringify(body),
+    headers:{
+      'accept': 'application/json', 
+      'content-type': 'application/json', 
+      ...(token ? {'Authorization': `Bearer ${token}`}: {})
+     },
+
+  }
+)
+}
+
+
+const partialUpdate = async ({path, token, body}:  any) => {
+  return await  axios({
+    method: 'PATCH',
+    url: `/api/${path}`,
+    data: body,
+    //data: JSON.stringify(body),
     headers:{
       'accept': 'application/json', 
       'content-type': 'application/json', 
@@ -45,4 +63,4 @@ const create = async ({url, token, body}:  any) => {
    
    
 
-export {search, create};
+export {search, create, partialUpdate};
