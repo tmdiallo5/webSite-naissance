@@ -2,7 +2,7 @@ import { useDeclarations } from "@/hooks";
 import DeclarationsItems from "@/components/declarations/DeclarationsItems";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import Debug from "@/components/shared/Debug";
+
 import PageFilter from "@/components/shared/PageFilter";
 
 function Declaration() {
@@ -40,7 +40,6 @@ function Declaration() {
           sortByDate={sortByDate}
         />
       </div>
-      <Debug data={declarations} />
     </>
   );
 }
