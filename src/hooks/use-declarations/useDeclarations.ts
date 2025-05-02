@@ -3,11 +3,12 @@ import { GlobalApplicationContext } from "@/context/global/GlobalApplicationCont
 import Declaration from "@/pages/declarations/Declaration";
 import { partialUpdate, search } from "@/services";
 import { Declarations } from "@/types/Declarations";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BiBody } from "react-icons/bi";
 
 function useDeclarations () {
+ const queryClient =  useQueryClient();
 
     const {updateTitle, state: {token}} = useContext(GlobalApplicationContext);
    const {data} = useQuery ({ 
@@ -17,7 +18,10 @@ function useDeclarations () {
      });
 
     const partialUpdateMutation = useMutation({ 
-      mutationFn: ({path, data}: any) => partialUpdate({path, token, body: data})
+      mutationFn: ({path, data}: any) => partialUpdate({path, token, body: data}),
+      onSettled: () => {
+        queryClient.invalidateQueries({queryKey: ['declarations']})
+      }
  
      });
    
@@ -43,7 +47,7 @@ function useDeclarations () {
     };
 */
     const updateStatus = (data: { id: string; status: string }) => {
-      partialUpdateMutation.mutate({path: `declarations/${data.id}`, data});
+      partialUpdateMutation.mutate({path: `declarations/${data.id}/status`, data});
     };
    
 

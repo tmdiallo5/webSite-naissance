@@ -10,12 +10,17 @@ type Props = {
   action: (data: { id: string; status: string }) => void;
 };
 
-function DeclarationsItem({ declaration: item, index, action }: any) {
+function DeclarationsItem({ declaration: item, index, action }: Props) {
   const getLastStatus = (declaration: any) => {
     if (declaration.status) {
-      const status = declaration.status.sort(
-        ({ registered }: { registered: Date }) => registered
-      )[0];
+      const status = declaration.status.sort((fItem: any, sItem: any) => {
+        const { registered: fRegistered } = fItem;
+        const { registered: sRegistered } = sItem;
+        return (
+          new Date(sRegistered).getTime() - new Date(fRegistered).getTime()
+        );
+      })[0];
+
       const {
         status: { name },
       } = status;
@@ -23,59 +28,55 @@ function DeclarationsItem({ declaration: item, index, action }: any) {
     }
   };
   const getDate = (declaration: any) => {
-    if (declaration.statuses) {
-      const status = declaration.statuses.filter((item: any) => {
+    if (declaration.status) {
+      const status = declaration.status.filter((item: any) => {
         const {
           status: { name },
         } = item;
         return name.toUpperCase() === "NEW";
-        // status === "NEW";
       })[0];
       return status ? status.registered : null;
     }
     return null;
-    /*  const status = declaration.status.map((item: any) => {
-      const { status } = item;
-      status == "NEW";
-    })[0];
-    return status ? status.registered : null;*/
   };
 
   return (
-    <article
-      key={item.id}
-      className={`grid grid-cols-12 border-t border-gray-300 col-span-2 items-center ${
-        index % 2 === 0 ? "bg-gray-100" : null
-      }`}
-    >
-      <span className={` p-2`}>{formatDate(getDate(item))}</span>
-      <span className={` p-2 col-span-2 flex flex-col`}>
-        <span>{item.child.firstName}</span>
-        <span className="uppercase">{item.child.lastName}</span>
-      </span>
-      <span className={` p-2`}>
-        {item?.child?.birthDate ? formatDate(item.child.birthDate) : "N/A"}
-      </span>
-      <span className={` p-2`}>
-        <span>{item.company.name}</span>
-      </span>
-      <span className={` p-2 col-span-2 flex flex-col`}>
-        <span>{item.firstParent ? item?.firstParent.firstName : ""}</span>
-        <span className="uppercase">
-          {item.firstParent ? item?.firstParent.lastName : ""}
+    <>
+      <article
+        key={item.id}
+        className={`grid grid-cols-12 border-t border-gray-300 col-span-2 items-center ${
+          index % 2 === 0 ? "bg-gray-100" : null
+        }`}
+      >
+        <span className={` p-2`}>{formatDate(getDate(item))}</span>
+        <span className={` p-2 col-span-2 flex flex-col`}>
+          <span>{item.child.firstName}</span>
+          <span className="uppercase">{item.child.lastName}</span>
         </span>
-      </span>
-      <span className={` p-2 col-span-2 flex flex-col`}>
-        <span>{item.secondParent.firstName}</span>
-        <span className="uppercase">{item.secondParent.lastName}</span>
-      </span>
-      <StatusBadge status={getLastStatus(item)} />
-      <ActionButton
-        classes="p-2 col-span-2 "
-        action={action}
-        id={`${item.id}`}
-      ></ActionButton>
-    </article>
+        <span className={` p-2`}>
+          {item?.child?.birthDate ? formatDate(item.child.birthDate) : "N/A"}
+        </span>
+        <span className={` p-2`}>
+          <span>{item.company.name}</span>
+        </span>
+        <span className={` p-2 col-span-2 flex flex-col`}>
+          <span>{item.firstParent ? item?.firstParent.firstName : ""}</span>
+          <span className="uppercase">
+            {item.firstParent ? item?.firstParent.lastName : ""}
+          </span>
+        </span>
+        <span className={` p-2 col-span-2 flex flex-col`}>
+          <span>{item.secondParent.firstName}</span>
+          <span className="uppercase">{item.secondParent.lastName}</span>
+        </span>
+        <StatusBadge status={getLastStatus(item)} />
+        <ActionButton
+          classes="p-2 col-span-2 "
+          action={action}
+          id={`${item.id}`}
+        ></ActionButton>
+      </article>
+    </>
   );
 }
 
