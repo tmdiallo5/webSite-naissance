@@ -113,8 +113,7 @@ function useDeclarations () {
       };
    */
       useEffect(() => {
-        
-          setDeclaration(data);
+          setDeclaration(data as Declarations[]);
           updateDeclarations(data);
         updateTitle({"title": "Déclaration"}); 
        
