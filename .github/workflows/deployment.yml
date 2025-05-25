@@ -9,7 +9,7 @@ env:
 jobs:
   create-folder:
     name: Create folder on server
-    runs-on: ubuntu-ubuntu-24.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Execute remote SSH commands
         uses: appleboy/ssh-action@v1
@@ -19,15 +19,14 @@ jobs:
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            mkdir -p ${{env.GROUP}}/${{env.PROJECT}}          
+            mkdir -p ${{env.GROUP}}/${{env.PROJECT}}
 
   build-project:
-    runs-on: ubuntu-ubuntu-24.04
+    runs-on: ubuntu-24.04
     needs: create-folder
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-     
 
       - name: build project
         run: |
