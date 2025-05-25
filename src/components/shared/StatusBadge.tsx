@@ -1,5 +1,4 @@
 import { getStatusColor, getStatusLabel } from "@/utils";
-import React from "react";
 
 function StatusBadge({ status }: { status: string }) {
   return (

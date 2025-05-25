@@ -4,8 +4,7 @@ import StatusBadge from "@/components/shared/StatusBadge";
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 import { search } from "@/services";
 import { formatDate } from "@/utils";
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
 
 function Requests() {
   const {
@@ -19,9 +18,9 @@ function Requests() {
   const { requests = [], requestsFilter = "" } = state;
 
   const getRequests = async () => {
-    if (!requests || requests.length) {
-      const data = await search("requests");
-      setRequests(data);
+    if (!requests || !requests.length) {
+      const data = await search({ path: "requests" });
+      setRequests({ requests: data });
     }
 
     //console.log("Données récupérées :", data);

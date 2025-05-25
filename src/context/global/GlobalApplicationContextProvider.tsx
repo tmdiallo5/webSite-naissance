@@ -1,10 +1,9 @@
 import { Declarations } from "@/types/Declarations";
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
 import {
   APPLICATION_STATE,
   FILTER_REQUESTS,
-  SET_REQUESTS_STATUS,
   SET_REQUESTS,
   UPDATE_TITLE,
   SET_TOKEN,

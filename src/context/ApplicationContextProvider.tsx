@@ -1,5 +1,5 @@
 import { Declarations } from "@/types/Declarations";
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import { ApplicationReducer } from "./ApplicationReducer";
 import { INITIAL_STATE, UPDATE_DECLARATIONS } from "@/utils";
 

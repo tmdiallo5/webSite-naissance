@@ -1,5 +1,5 @@
 import axios from "axios";
-import { json } from "react-router-dom";
+
 type Params = {
    path: string;
    token?: string;

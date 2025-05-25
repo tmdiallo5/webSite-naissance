@@ -3,10 +3,9 @@ import App from "@/App";
 import ErrorPage from "@/error-page";
 import PrivateLayout from "@/layouts/PrivateLayout";
 import Declaration from "@/pages/declarations/Declaration";
-import Home from "@/pages/Home";
+
 import DeclarationEdit from "@/pages/declarations/DeclarationEdit";
 
-import { action as destroyAction } from "./destroy";
 import Requests from "@/pages/requests/Requests";
 import RequestEdit from "@/pages/requests/RequestEdit";
 import PublicLayout from "./PublicLayout";

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { NAV_LINKS } from "@/utils/";
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 

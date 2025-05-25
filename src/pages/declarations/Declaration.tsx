@@ -1,19 +1,16 @@
 import { useDeclarations } from "@/hooks";
 import DeclarationsItems from "@/components/declarations/DeclarationsItems";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
 
 import PageFilter from "@/components/shared/PageFilter";
 
 function Declaration() {
   const {
     declarations,
-    state,
+
     updateStatus,
     sortByStatus,
     sortByDate,
-    filtRef,
-    filterDeclarations,
+
     filteredDeclaration,
   } = useDeclarations();
   console.log("====================================");

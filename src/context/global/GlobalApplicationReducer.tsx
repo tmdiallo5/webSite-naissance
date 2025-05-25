@@ -1,4 +1,3 @@
-import { action } from "@/routes/destroy";
 import { Requests } from "@/types/Requests";
 import {
   APPLICATION_STATE,

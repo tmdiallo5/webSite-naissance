@@ -1,11 +1,9 @@
-
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
-import Declaration from "@/pages/declarations/Declaration";
 import { partialUpdate, search } from "@/services";
 import { Declarations } from "@/types/Declarations";
-import { useMutation, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
-import { BiBody } from "react-icons/bi";
+
 
 function useDeclarations () {
  const queryClient =  useQueryClient();

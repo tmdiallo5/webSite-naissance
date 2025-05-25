@@ -1,5 +1,5 @@
 export type Profile = {
-    gender: string,
+     gender: string,
      firstName: string,
      lastName: string,
      email: string,

@@ -1,8 +1,7 @@
-import { formatDate, getStatusColor, getStatusLabel } from "@/utils";
+import { formatDate } from "@/utils";
 import ActionButton from "../shared/ActionButton";
 import StatusBadge from "../shared/StatusBadge";
 import { Declarations } from "@/types/Declarations";
-import Debug from "../shared/Debug";
 
 type Props = {
   declaration: Declarations;

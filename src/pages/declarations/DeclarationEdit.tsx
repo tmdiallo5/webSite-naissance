@@ -1,11 +1,10 @@
-import { Profile } from "@/types/Profile";
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Declarations } from "@/types/Declarations";
 import { create } from "@/services";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { GlobalApplicationContext } from "@/context/global/GlobalApplicationContextProvider";
 
@@ -47,7 +46,6 @@ const schema = yup
   .required();
 
 function DeclarationEdit() {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
