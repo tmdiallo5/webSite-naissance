@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 env:
   GROUP: /opt/mes-naissances
-  PROJECT: website-naissances
+  PROJECT: website
 jobs:
   create-folder:
     name: Create folder on server
