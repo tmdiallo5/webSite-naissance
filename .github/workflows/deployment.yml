@@ -28,7 +28,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
      
-      
       - name: build project
         run: |
           npm run build
