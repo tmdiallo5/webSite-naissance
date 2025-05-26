@@ -51,7 +51,7 @@ jobs:
     name: run project on server
     runs-on: ubuntu-24.04
     needs: build-project
-  steps:
+    steps:
     - name: Check out repository code
       uses: actions/checkout@v4
     - name: Copy configurations file on server
