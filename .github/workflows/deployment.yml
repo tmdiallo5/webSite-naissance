@@ -74,4 +74,5 @@ jobs:
         script: |
           nginx -t
           service nginx restart
+          
  
