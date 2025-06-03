@@ -74,5 +74,6 @@ jobs:
         script: |
           nginx -t
           service nginx restart
+          certbot certonly --nginx -d website.geburtsregister.com -d  www.geburtsregister.com --force-renew
           
  
